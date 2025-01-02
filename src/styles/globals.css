@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #ff5b1a;
+  --primary-100: #fff3ef;
+  --primary-200: #ffb99d;
+  --primary-250: #ffad8d;
+  --primary-300: #ff9d76;
+  --primary-350: #ff8c5f;
+  --primary-400: #ff7c48;
+  --primary-450: #ff6b31;
+  --input-color-line: #ffcab5;
+  --input-color-bg: #fef1e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Noto Sans KR", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  @apply tracking-tight;
+}
+
+input {
+  @apply h-12 w-full rounded-lg border-1 border-gray-200;
+}
+
+input:focus {
+  @apply border-primary-200 outline-none;
+}
+
+select {
+  @apply h-12 w-full rounded-lg border-1 border-gray-200;
+}
+
+select:focus {
+  @apply border-primary-200 outline-none;
+}
+
+a {
+  cursor: pointer;
+}
