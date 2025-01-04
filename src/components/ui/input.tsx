@@ -28,7 +28,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           id={id}
-          className={twMerge(value ? "inserted" : "", className)}
+          className={twMerge(value ? "inserted transition-colors duration-500" : "", className)}
           value={value}
           placeholder={placeholder}
           required={required || false}

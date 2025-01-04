@@ -9,7 +9,6 @@ export default function LogInForm() {
   const { state, dispatch } = useAuthForm();
 
   const handleClick = () => {
-    console.log("click");
     dispatch({ type: "SET_FORM", payload: { authForm: "sign-up" } });
   };
 

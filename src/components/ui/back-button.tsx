@@ -1,13 +1,16 @@
 "use client";
 import Image from "next/image";
-import backArrow from "@/assets/icon_back.png";
+import backIcon from "@/assets/icons/icon_back.png";
 import { useRouter } from "next/navigation";
 
-export default function BackButton() {
+export default function BackButton({url}: {url?: string}) {
   const router = useRouter();
 
   const handleClick = () => {
-    if (window.history.length > 1) {
+    if(url) {
+      router.push(url);
+    }
+    else if (window.history.length > 1) {
       router.back();
     } else {
       router.push("/");
@@ -16,7 +19,7 @@ export default function BackButton() {
 
   return (
     <Image
-      src={backArrow}
+      src={backIcon}
       alt="back"
       className="cursor-pointer"
       width={36}

@@ -1,6 +1,6 @@
 "use client";
 
-import { authFormReducer, initialState } from "@/reducers/auth-form.reducer";
+import { authFormReducer, initialState } from "@/reducers/auth-form-reducer";
 import { createContext, useReducer } from "react";
 
 export const AuthFormContext = createContext<AuthFormContext | null>(null);
