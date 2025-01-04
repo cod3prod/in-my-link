@@ -28,6 +28,7 @@ export default function LogInForm() {
           placeholder="이메일을 입력하세요"
           id="email"
           type="email"
+          required
         />
         <Input
           label="비밀번호"
@@ -41,6 +42,7 @@ export default function LogInForm() {
           placeholder="비밀번호를 입력하세요"
           id="password"
           type="password"
+          required
         />
         <Button className="color mt-10 mb-0" type="submit" disabled={state.disabled}>
           IN MY LINK 로그인

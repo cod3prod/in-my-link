@@ -23,6 +23,7 @@ export default function FindByEmailForm() {
           }
           type="email"
           id="email"
+          required
         />
         <Button className="color mt-10 mb-0" type="submit" disabled={state.disabled}>
           찾기
