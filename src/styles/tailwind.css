@@ -4,7 +4,7 @@
 @layer components {
     /* ------------------ BUTTON ------------------*/
     .button {
-        @apply mb-10 mt-10 flex h-14 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-primary font-bold text-white;
+        @apply mb-10 mt-10 flex h-12 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-primary font-bold text-white;
     }
 
     /* 메인색상 버튼 */
@@ -51,5 +51,13 @@
 
     .title {
         @apply text-base font-normal text-gray-600;
+    }
+
+    .input-label {
+        @apply mb-2 text-sm font-medium text-gray-700
+    }
+
+    .supplementary-info {
+        @apply text-sm text-gray-500
     }
 }

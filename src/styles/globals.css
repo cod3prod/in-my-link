@@ -34,7 +34,7 @@ body {
 }
 
 input {
-  @apply h-12 w-full rounded-lg border-1 border-gray-200;
+  @apply h-10 w-full rounded-lg border-1 border-gray-200;
 }
 
 input:focus {
@@ -42,7 +42,7 @@ input:focus {
 }
 
 select {
-  @apply h-12 w-full rounded-lg border-1 border-gray-200;
+  @apply h-10 w-full rounded-lg border-1 border-gray-200;
 }
 
 select:focus {

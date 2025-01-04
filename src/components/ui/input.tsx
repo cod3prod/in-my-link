@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { ComponentPropsWithRef } from "react";
 
@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     
     return (
       <div className="flex flex-col">
-        <label htmlFor={id} className="mb-2 text-sm font-medium text-gray-700">
+        <label htmlFor={id} className="input-label">
           {label}
         </label>
         <input
