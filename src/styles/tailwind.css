@@ -50,7 +50,8 @@
     }
 
     .title {
-        @apply text-base font-normal text-gray-600;
+        /* @apply text-base font-normal text-gray-600; */
+        @apply text-base sm:text-lg font-bold;
     }
 
     .input-label {
@@ -58,6 +59,7 @@
     }
 
     .supplementary-info {
-        @apply text-sm text-gray-500
+        /* @apply text-sm text-gray-500 */
+        @apply text-xs sm:text-base text-gray-400
     }
 }
