@@ -1,5 +1,3 @@
-import { BlockType } from "@/enums/block-type.enum";
-
 export const initialState: BlockFormState = {
     type: null,
     style: null,
