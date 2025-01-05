@@ -12,7 +12,7 @@
         @apply bg-primary;
     }
     .button.color:hover {
-        @apply bg-primary-450;
+        @apply bg-primary-400;
     }
     .button.color.disable {
         @apply bg-primary-100 text-primary-200;

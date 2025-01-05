@@ -17,12 +17,12 @@ export default function BackButton({ url }: { url?: string }) {
   };
 
   return (
-    <button className="relative w-10 h-10 rounded-full hover:bg-gray-100 transition-colors duration-500" onClick={handleClick}>
-      <Image
-        src={backIcon}
-        alt="back"
-        className="object-contain cursor-pointer"
-      />
+    <button
+      className="relative w-10 h-10 rounded-full hover:bg-gray-100 transition-colors duration-500  cursor-pointer"
+      type="button"
+      onClick={handleClick}
+    >
+      <Image src={backIcon} alt="back" className="object-contain" />
     </button>
   );
 }
