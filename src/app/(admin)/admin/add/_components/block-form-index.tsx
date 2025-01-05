@@ -5,7 +5,7 @@ import { useBlockForm } from "@/hooks/use-block-form";
 import BlockFormTitle from "./block-form-title";
 import LinkForm from "./link";
 import TextForm from "./text";
-import CalenderForm from "./calender";
+import CalendarForm from "./calendar";
 import ImageForm from "./image";
 import VideoForm from "./video";
 import EventForm from "./event";
@@ -32,7 +32,7 @@ export default function BlockFormIndex() {
         <DividerForm />
         <VideoForm />
         <EventForm />
-        <CalenderForm />
+        <CalendarForm />
       </div>
     </form>
   );

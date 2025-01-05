@@ -55,7 +55,7 @@ export const blockData = [
   },
   {
     id: 6,
-    type: BlockType.CALENDER,
+    type: BlockType.CALENDAR,
     icon: calendarIcon,
     alt: "calendar",
     bgColor: "#EC4899", // bg-pink-500
