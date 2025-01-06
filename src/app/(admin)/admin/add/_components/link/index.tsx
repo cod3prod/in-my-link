@@ -24,8 +24,22 @@ export default function LinkForm() {
             payload: { title: e.target.value },
           });
         }}
-        placeholder="링크는 잘 나타낼 수 있는 이름으로 입력해주세요"
+        placeholder="링크를 대표하는 타이틀을 입력해주세요"
         id="title"
+        required
+      />
+
+      <Input
+        label="연결할 주소"
+        value={state.url || ""}
+        onChange={(e) => {
+          dispatch({
+            type: "SET_FORM",
+            payload: { url: e.target.value },
+          });
+        }}
+        placeholder="연결할 주소를 입력해주세요."
+        id="url"
         required
       />
 
@@ -39,14 +53,13 @@ export default function LinkForm() {
           });
         }}
         placeholder="이미지의 주소를 입력해주세요."
-        id="title"
+        id="img_url"
         required
       />
 
       <Button className="color" type="submit">
         추가 완료
       </Button>
-      
     </>
   );
 }
