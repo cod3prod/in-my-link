@@ -1,4 +1,4 @@
-export default function EventItem() {
+export default function EventBlock() {
   return (
     <div>EventItem</div>
   )

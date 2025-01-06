@@ -1,4 +1,4 @@
-export default function CalendarItem() {
+export default function CalendarBlock() {
   return (
     <div>CalendarItem</div>
   )

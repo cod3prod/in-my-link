@@ -4,7 +4,7 @@ import { FaSpinner } from "react-icons/fa";
 import { CiVideoOff } from "react-icons/ci";
 import { useState } from "react";
 
-export default function VideoItem({ url }: { url?: string }) {
+export default function VideoBlock({ url }: { url?: string }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
