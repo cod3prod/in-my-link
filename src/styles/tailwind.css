@@ -35,6 +35,15 @@
         @apply border-input-line bg-input-bg;
     }
 
+    /* ------------------ TEXTAREA ------------------*/
+    textarea {
+        @apply p-3;
+    }
+
+    textarea.inserted {
+        @apply border-input-line bg-input-bg;
+    }
+
     /* ------------------ SELECT ------------------*/
     select {
         @apply p-3;

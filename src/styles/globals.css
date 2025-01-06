@@ -49,6 +49,14 @@ select:focus {
   @apply border-primary-200 outline-none;
 }
 
+textarea {
+  @apply h-48 w-full rounded-lg border-1 border-gray-200;
+}
+
+textarea:focus {
+  @apply border-primary-200 outline-none;
+}
+
 a {
   cursor: pointer;
 }
