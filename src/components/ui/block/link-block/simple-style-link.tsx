@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function SimpleStyleLink({ title }: { title: string }) {
   return (
     <div className="flex w-full h-24 justify-between rounded-lg bg-white px-4 py-2 shadow-lg">
