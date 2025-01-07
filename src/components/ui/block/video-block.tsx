@@ -8,7 +8,7 @@ export default function VideoBlock({ url }: { url?: string }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="aspect-video w-full rounded-lg relative">
+    <section className="aspect-video w-full rounded-lg relative">
       {!url && (
         <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 absolute top-0 left-0 rounded-lg">
           <CiVideoOff className="text-gray-500 text-7xl animate-ping" />
@@ -33,6 +33,6 @@ export default function VideoBlock({ url }: { url?: string }) {
           onLoad={() => setIsLoading(false)}
         ></iframe>
       )}
-    </div>
+    </section>
   );
 }

@@ -11,7 +11,7 @@ export default function DividerBlock({
   dividerStyle: DividerBlockStyleEnum;
 }) {
   return (
-    <div className={twMerge("relative flex justify-center items-center p-4", className)}>
+    <section className={twMerge("relative flex justify-center items-center p-4", className)}>
       {dividerStyle === DividerBlockStyleEnum.NONE && (
         <div style={{ width: "100px", height: "1px" }} />
       )}
@@ -33,6 +33,6 @@ export default function DividerBlock({
       {dividerStyle === DividerBlockStyleEnum.ZIGZAG && (
         <Image src={zigzag} alt="zigzag" width={100} height={100} />
       )}
-    </div>
+    </section>
   );
 }
