@@ -57,7 +57,9 @@
     .page-name {
         @apply text-2xl font-semibold text-gray-700;
     }
-
+    .section-name {
+        @apply text-lg sm:text-xl font-semibold text-gray-700;
+    }
     .title {
         @apply text-base sm:text-lg font-bold;
     }

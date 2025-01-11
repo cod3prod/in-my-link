@@ -6,7 +6,7 @@ export default function CalendarBlock({
   schedules: Schedule[];
 }) {
   return (
-    <section className="flex flex-col items-center w-full p-4 rounded-lg bg-white shadow-lg">
+    <section className="flex flex-col h-64 w-full overflow-scroll pt-12 px-4 rounded-lg bg-white shadow-lg [&::-webkit-scrollbar]:hidden">
       {schedules.map((schedule, index) => (
         <CalendarBlockItem
           key={index}

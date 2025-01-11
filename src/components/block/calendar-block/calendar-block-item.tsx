@@ -24,8 +24,8 @@ export default function CalendarBlockItem({
   }
 
   return (
-    <div className="ml-10 flex w-full gap-1 h-20">
-      <StatusBadge status={status} className="-translate-x-4" />
+    <div className="flex-shrink-0 flex justify-center h-16 sm:h-20 w-full gap-1">
+      <StatusBadge status={status} />
       <TimelineDot isLast={isLast} />
       <ListViewInfo schedule={schedule} />
     </div>

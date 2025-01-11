@@ -27,7 +27,7 @@ export default function EventBlock({
       </div>
       <div className="flex items-center justify-between rounded-b-lg bg-gray-100 px-4 py-3 text-sm">
         <span className="text-gray-400">{`${dateStart} ~ ${dateEnd}`}</span>
-        <span className="flex items-center text-gray-400 transition-colors hover:text-gray-700">
+        <span className="flex items-center text-gray-400 transition-colors hover:text-gray-700 whitespace-nowrap">
           {daysLeft}
         </span>
       </div>

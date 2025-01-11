@@ -49,7 +49,7 @@ export default function Calendar({state, type}: {state: BlockFormState, type: st
   }
 
   return (
-    <div className="bg-gray-50 p-6">
+    <div className="bg-gray-50 p-4">
       <div className="max-w-4xl mx-auto">
         <MonthNavigator
           currentMonth={currentMonth}
