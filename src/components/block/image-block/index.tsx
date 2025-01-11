@@ -17,7 +17,7 @@ export default function ImageBlock({
   return (
     <div
       className={twMerge(
-        "w-full rounded-lg overflow-hidden shadow-lg bg-white",
+        "relative w-full rounded-lg overflow-hidden shadow-lg bg-white",
         src ? "transform hover:scale-105 transition-all duration-150" : ""
       )}
     >
