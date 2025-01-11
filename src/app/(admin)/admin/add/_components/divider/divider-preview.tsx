@@ -1,7 +1,6 @@
 "use client";
 
 import { useBlockForm } from "@/hooks/use-block-form";
-import Divider from "./divider";
 import DividerBlock from "@/components/block/divider-block";
 import LinkBlock from "@/components/block/link-block";
 

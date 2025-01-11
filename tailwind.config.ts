@@ -28,7 +28,7 @@ export default {
           connect: "#DF5C25",
           text: "#6EBD72",
           image: "#6FBADB",
-          divide: "#8BCF42",
+          divider: "#8BCF42",
           video: "#8348E9",
           calendar: "#D144AD",
           event: "#EDB72A",

@@ -1,7 +1,6 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import Divider from "./divider";
 import { useBlockForm } from "@/hooks/use-block-form";
 import DividerBlock from "@/components/block/divider-block";
 
