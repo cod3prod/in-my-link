@@ -4,7 +4,7 @@ import { useBlockForm } from "@/hooks/use-block-form";
 import { BlockType } from "@/enums/block-type.enum";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
-import ImagePreview from "./image-preview";
+import ImageBlock from "@/components/block/image-block";
 
 export default function ImageForm() {
   const { state, dispatch } = useBlockForm();
@@ -22,8 +22,13 @@ export default function ImageForm() {
         id="img_url"
         required
       />
-      <ImagePreview />
-      
+
+      <ImageBlock
+        img_url={state.img_url || undefined}
+        title={state.title || undefined}
+        src={state.url || undefined}
+      />
+
       <div className="relative">
         <Input
           label="타이틀"

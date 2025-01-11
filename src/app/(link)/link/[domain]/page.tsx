@@ -1,10 +1,10 @@
-import CalendarBlock from "@/components/ui/block/calendar-block";
-import DividerBlock from "@/components/ui/block/divider-block";
-import EventBlock from "@/components/ui/block/event-block";
-import ImageBlock from "@/components/ui/block/image-block";
-import LinkBlock from "@/components/ui/block/link-block/index";
-import TextBlock from "@/components/ui/block/text-block";
-import VideoBlock from "@/components/ui/block/video-block";
+import CalendarBlock from "@/components/block/calendar-block";
+import DividerBlock from "@/components/block/divider-block";
+import EventBlock from "@/components/block/event-block";
+import ImageBlock from "@/components/block/image-block";
+import LinkBlock from "@/components/block/link-block/index";
+import TextBlock from "@/components/block/text-block";
+import VideoBlock from "@/components/block/video-block";
 import { DividerBlockStyleEnum } from "@/enums/divider-block-style.enum";
 
 export default function Page() {

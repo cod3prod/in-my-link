@@ -4,7 +4,8 @@ import { useBlockForm } from "@/hooks/use-block-form";
 import { BlockType } from "@/enums/block-type.enum";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import VideoEmbed from "./video-embed";
+import VideoBlock from "@/components/block/video-block";
+import { convertToEmbedURL } from "@/utils/embed";
 
 export default function VideoForm() {
   const { state, dispatch } = useBlockForm();
@@ -15,7 +16,7 @@ export default function VideoForm() {
       <div className="relative">
         <Input
           label="내용 입력"
-          value={state.url || ""}
+          value={state.url ? state.url : ""}
           onChange={(e) => {
             dispatch({
               type: "SET_FORM",
@@ -27,7 +28,7 @@ export default function VideoForm() {
           required
         />
       </div>
-      <VideoEmbed url={state.url} />
+      <VideoBlock url={state.url? convertToEmbedURL(state.url) : undefined} />
       <Button className="color" type="submit">
         추가 완료
       </Button>

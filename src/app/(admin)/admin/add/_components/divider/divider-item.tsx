@@ -3,6 +3,7 @@
 import { twMerge } from "tailwind-merge";
 import Divider from "./divider";
 import { useBlockForm } from "@/hooks/use-block-form";
+import DividerBlock from "@/components/block/divider-block";
 
 export default function DivideItem({ index }: { index: number }) {
   const descriptions = ["공백", "점선", "실선", "포인트", "지그재그"];
@@ -19,7 +20,7 @@ export default function DivideItem({ index }: { index: number }) {
         });
       }}
     >
-      <Divider
+      <DividerBlock
         className={twMerge(
             "relative flex justify-center items-center aspect-square w-full rounded-lg border border-gray-300",
             state.style === index + 1 ? "border-primary-450" : ""
