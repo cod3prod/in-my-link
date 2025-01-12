@@ -4,6 +4,8 @@ import { useBlockForm } from "@/hooks/use-block-form";
 import { BlockType } from "@/enums/block-type.enum";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
+import EventPreview from "./event-preview";
+import DatetimeSelector from "../datetime-selector";
 
 export default function EventForm() {
   const { state, dispatch } = useBlockForm();
@@ -11,6 +13,7 @@ export default function EventForm() {
   if (state.type !== BlockType.EVENT) return null;
   return (
     <>
+      <EventPreview state={state} />
       <Input
         label="이벤트 명"
         value={state.title || ""}
@@ -21,6 +24,8 @@ export default function EventForm() {
         id="title"
         required
       />
+      <DatetimeSelector label="오픈 일시" id="start" />
+      <DatetimeSelector label="종료 일시" id="end" />
       <Input
         label="이벤트 설명"
         value={state.sub_text_01 || ""}
