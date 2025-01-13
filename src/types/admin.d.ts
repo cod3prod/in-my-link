@@ -22,6 +22,7 @@ type Block = {
   created_at: string;
   updated_at: string;
   schedules?: Schedule[];
+  active: 0 | 1;
 };
 
 type BlockFormState = {
@@ -38,6 +39,7 @@ type BlockFormState = {
   created_at: string | null;
   updated_at: string | null;
   schedules?: Schedule[];
+  active?: 0|1;
 };
 
 type BlockFormAction =

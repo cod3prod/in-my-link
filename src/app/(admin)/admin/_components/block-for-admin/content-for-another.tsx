@@ -1,17 +1,27 @@
 import Image from "next/image";
-import tempImg from "@/assets/icons/icon_back.png";
 
-export default function ContentForAnother() {
+export default function ContentForAnother({
+  title,
+  img_url,
+  url,
+}: {
+  title: string;
+  img_url: string | null;
+  url: string | null;
+}) {
   return (
     <div className="flex space-x-2">
-      <Image
-        src={tempImg}
-        alt={"block image"}
-        width={56}
-        height={56}
-        className="rounded-md"
-      />
-      <div>타이틀</div>
+      {img_url && (
+        <Image
+          src={img_url}
+          alt={`${title} image`}
+          width={56}
+          height={56}
+          className="rounded-md"
+        />
+      )}
+      <p>{title}</p>
+      {url && <p className="truncate">{url}</p>}
     </div>
   );
 }
