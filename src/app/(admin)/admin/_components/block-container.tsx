@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Reorder } from "framer-motion";
 import BlockForAdmin from "./block-for-admin";
 import data from "@/data/dummy";
+import AddButton from "./add-button";
 
 export default function BlockContainer() {
   const [blocks, setBlocks] = useState<Block[]>(data);
@@ -24,6 +25,7 @@ export default function BlockContainer() {
   };
 
   return (
+  <section className="relative container mx-auto max-w-3xl mb-20 p-4" >
     <Reorder.Group
       as="ul"
       axis="y"
@@ -40,5 +42,7 @@ export default function BlockContainer() {
         />
       ))}
     </Reorder.Group>
-  );
+    <AddButton />
+  </section>
+);
 }

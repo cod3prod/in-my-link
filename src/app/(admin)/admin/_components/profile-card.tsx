@@ -3,7 +3,7 @@ import profileImage from "@/assets/icons/icon_profile.png";
 
 export default function ProfileCard() {
   return (
-    <div className="relative flex h-52 w-full flex-col items-center justify-center bg-gray-100 py-8">
+    <section className="relative flex h-52 w-full flex-col items-center justify-center bg-gray-100 py-8">
       <Image
         src={profileImage}
         alt="profile image"
@@ -11,6 +11,6 @@ export default function ProfileCard() {
         height={64}
       />
       <p className="mt-2 font-semibold text-black underline">user name</p>
-    </div>
+    </section>
   );
 }

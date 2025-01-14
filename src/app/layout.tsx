@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={twMerge("flex flex-col min-h-screen", notoSansKR.className)}>
         <Global />
         <Header />
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full mt-16">{children}</main>
         <Footer />
       </body>
     </html>
