@@ -1,6 +1,5 @@
 "use client";
 
-import { twMerge } from "tailwind-merge";
 import DragTab from "./drag-tab";
 import BlockHeader from "./block-header";
 import BlockContent from "./block-content";
@@ -16,7 +15,7 @@ export default function BlockForAdmin({
   index: number;
   moveItem: (index: number, direction: "UP" | "DOWN") => void;
 }) {
-  const { type } = block;
+  const { type, active } = block;
   const controls = useDragControls();
 
   return (
@@ -26,14 +25,13 @@ export default function BlockForAdmin({
       dragListener={false}
       dragControls={controls}
       key={block.id}
-      className={twMerge(
-        "relative mb-3 flex min-h-32 rounded-lg border border-gray-200 bg-white shadow-lg",
-        "overflow-hidden"
-      )}
+      className={
+        "relative flex-1 flex min-h-32 rounded-lg border border-gray-200 shadow-lg"
+      }
     >
       <DragTab moveItem={moveItem} index={index} controls={controls} />
-      <div className="flex flex-col w-full">
-        <BlockHeader type={type} />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <BlockHeader type={type} active={active} />
         <BlockContent block={block} />
         <DeleteButton />
       </div>

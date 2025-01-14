@@ -41,6 +41,7 @@ export const dummySchedules: Schedule[] = [
 const data: Block[] = [
   {
     id: 0,
+    sequence: 1,
     type: 2,
     style: null,
     title: "동영상 블록",
@@ -56,6 +57,7 @@ const data: Block[] = [
   },
   {
     id: 1,
+    sequence: 2,
     type: 1,
     style: 1,
     title: "구분선 블록",
@@ -71,6 +73,7 @@ const data: Block[] = [
   },
   {
     id: 2,
+    sequence: 3,
     type: 3,
     style: 1,
     title: "링크 블록",
@@ -86,6 +89,7 @@ const data: Block[] = [
   },
   {
     id: 3,
+    sequence: 4,
     type: 4,
     style: null,
     title: "이미지 블록",
@@ -101,6 +105,7 @@ const data: Block[] = [
   },
   {
     id: 4,
+    sequence: 5,
     type: 5,
     style: null,
     title: "이벤트 블록",
@@ -116,6 +121,7 @@ const data: Block[] = [
   },
   {
     id: 5,
+    sequence: 6,
     type: 6,
     style: null,
     title: "텍스트 블록",
@@ -131,6 +137,7 @@ const data: Block[] = [
   },
   {
     id: 6,
+    sequence: 7,
     type: 7,
     style: 1,
     title: null,

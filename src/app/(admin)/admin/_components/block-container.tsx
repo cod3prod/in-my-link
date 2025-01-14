@@ -24,17 +24,21 @@ export default function BlockContainer() {
   };
 
   return (
-    <div>
-      <Reorder.Group as="ul" axis="y" values={blocks} onReorder={setBlocks}>
-        {blocks.map((block, index) => (
-          <BlockForAdmin
-            key={block.id}
-            index={index}
-            block={block}
-            moveItem={moveItem}
-          />
-        ))}
-      </Reorder.Group>
-    </div>
+    <Reorder.Group
+      as="ul"
+      axis="y"
+      values={blocks}
+      onReorder={setBlocks}
+      className="flex-1 flex flex-col gap-4"
+    >
+      {blocks.map((block, index) => (
+        <BlockForAdmin
+          key={block.id}
+          index={index}
+          block={block}
+          moveItem={moveItem}
+        />
+      ))}
+    </Reorder.Group>
   );
 }

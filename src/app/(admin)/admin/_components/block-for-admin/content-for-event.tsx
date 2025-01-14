@@ -15,13 +15,13 @@ export default function ContentForEvent({
   const dateEnd = formatDateTime(date_end);
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-0.5 input-label">
       <div className="flex items-center justify-start gap-2 text-left">
-        <p className="w-16 text-gray-400">{title}</p>
+        <p className="text-gray-400">{title}</p>
         <span className="">{sub_text_01 || "EVENT"}</span>
       </div>
       <div className="flex items-center gap-2 text-left">
-        <p className="w-16 text-gray-400">일정</p>
+        <p className="text-gray-400">일정</p>
         <span className="">{`${dateStart} ~ ${dateEnd}`}</span>
       </div>
     </div>

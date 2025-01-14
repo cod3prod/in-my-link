@@ -20,7 +20,13 @@ const blockTypeMap: Record<BlockType, { title: string; src: StaticImageData }> =
     [BlockType.CALENDAR]: { title: "캘린더", src: calendarIcon },
   };
 
-export default function BlockHeader({ type }: { type: BlockType }) {
+export default function BlockHeader({
+  type,
+  active,
+}: {
+  type: BlockType;
+  active: 0 | 1;
+}) {
   return (
     <div className="flex items-center justify-between h-7 px-2">
       <div className="flex items-center gap-1 text-xs font-semibold text-primary">
@@ -32,7 +38,7 @@ export default function BlockHeader({ type }: { type: BlockType }) {
         />
         <p>{blockTypeMap[type].title}</p>
       </div>
-      <ActiveTab />
+      <ActiveTab active={active} />
     </div>
   );
 }

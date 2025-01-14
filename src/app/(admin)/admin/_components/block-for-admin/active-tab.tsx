@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-export default function ActiveTab() {
-  const [isToggled, setIsToggled] = useState(true);
+export default function ActiveTab({ active }: { active: 0 | 1 }) {
+  const [isToggled, setIsToggled] = useState(active === 1);
 
   return (
     <div className="flex items-center">

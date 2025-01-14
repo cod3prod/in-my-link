@@ -10,6 +10,7 @@ type Schedule = {
 
 type Block = {
   id: number;
+  sequence: number;
   type: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   style: number | null;
   title: string | null;
@@ -27,6 +28,7 @@ type Block = {
 
 type BlockFormState = {
   id?: number;
+  sequnce?: number;
   type: BlockType | null;
   style: number | null;
   title: string | null;

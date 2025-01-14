@@ -69,6 +69,6 @@
     }
 
     .supplementary-info {
-        @apply text-xs sm:text-base text-gray-400
+        @apply text-xs text-gray-400
     }
 }
