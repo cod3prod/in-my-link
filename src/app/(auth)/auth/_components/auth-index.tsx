@@ -7,7 +7,7 @@ import FindByEmailForm from "./find-by-email-form";
 
 export default function AuthIndex() {
   return (
-    <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <div className="mt-28 max-h-fit w-full max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
       <BackButton />
       <SignUpForm />
       <LogInForm />
