@@ -49,7 +49,7 @@ export default function Header() {
           <Image src={menuIcon} alt="menu icon" className="h-6 w-6" />
         </button>
       </div>
-      {isMenuOpen && <Aside handleClose={() => setIsMenuOpen(false)} />}
+      <Aside isMenuOpen={isMenuOpen} handleClose={() => setIsMenuOpen(false)} />
     </header>
   );
 }
