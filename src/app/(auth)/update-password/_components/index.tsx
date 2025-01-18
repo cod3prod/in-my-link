@@ -31,7 +31,7 @@ export default function UpdatePassword() {
 
   return (
     <section className="min-h-screen bg-background flex items-center justify-center p-4">
-     <div className="flex flex-col justify-center w-full max-w-2xl -translate-y-1/2">
+     <div className="flex flex-col justify-center w-full max-w-2xl">
         <h2 className="page-name text-center mb-4">비밀번호 변경</h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>

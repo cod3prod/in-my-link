@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 export default function NotFound() {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -13,20 +13,7 @@ export default function NotFound() {
       <div className="text-center space-y-6">
         <div className="flex justify-center mb-6">
           <div className="bg-primary-100 rounded-full p-6 animate-pulse">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-24 w-24 text-primary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <AiOutlineExclamationCircle className="h-24 w-24 text-primary" />
           </div>
         </div>
 

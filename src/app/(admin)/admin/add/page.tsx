@@ -5,7 +5,7 @@ import BlockFormIndex from "./_components/block-form-index";
 export default function Page() {
   return (
     <BlockFormProvider>
-      <section className="container mx-auto max-w-3xl p-4">
+      <section className="container mt-16 mx-auto max-w-3xl p-4">
         <BlockMaker />
         <BlockFormIndex />
       </section>
