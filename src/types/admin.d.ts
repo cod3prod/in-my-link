@@ -63,7 +63,7 @@ type Profile = {
   user_id: string;
   username: string;
   path: string | null;
-  img_url: string | null;
+  profile_img: string | null;
   visitor_count: number;
   updated_at: string;
   created_at: string;

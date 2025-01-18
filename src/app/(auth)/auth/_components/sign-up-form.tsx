@@ -16,8 +16,7 @@ export default function SignUpForm() {
   const [error, setError] = useState("");
   const router = useRouter();
   const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN;
-  console.log('테스트1', BASE_URL);
-  console.log('테스트2', `${BASE_URL}/callback`);
+
   useEffect(() => {
     // if (!session) return;
     // router.push("/");

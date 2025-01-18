@@ -30,13 +30,14 @@ export default function NotFound() {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold text-foreground mb-4">
+        <h1 className="text-2xl sm:text-4xl font-bold text-foreground mb-4">
           요청하신 페이지를 찾을 수 없습니다
         </h1>
 
         <p className="text-text-666 mb-6 max-w-md mx-auto">
-          불편을 드려 죄송합니다. 요청하신 페이지가 존재하지 않거나 이동되었을
-          수 있습니다. 정확한 URL을 다시 확인해 주시기 바랍니다.
+          불편을 드려 죄송합니다.<br />
+          요청하신 페이지가 존재하지 않거나 이동되었을수 있습니다.<br />
+          정확한 URL을 다시 확인해 주시기 바랍니다.
         </p>
 
         <div className="flex justify-center space-x-4">

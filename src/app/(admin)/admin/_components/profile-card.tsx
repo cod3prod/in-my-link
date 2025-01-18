@@ -2,11 +2,11 @@ import Image from "next/image";
 import profileImage from "@/assets/icons/icon_profile.png";
 
 export default function ProfileCard({profile}:{profile : Profile}) {
-  console.log("test", profile);
+
   return (
     <section className="relative flex h-52 w-full flex-col items-center justify-center bg-gray-100 py-8">
       <Image
-        src={profile?.img_url || profileImage}
+        src={profile?.profile_img || profileImage}
         alt="profile image"
         width={64}
         height={64}
