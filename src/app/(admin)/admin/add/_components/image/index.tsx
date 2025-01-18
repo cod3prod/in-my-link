@@ -24,9 +24,9 @@ export default function ImageForm() {
       />
 
       <ImageBlock
-        img_url={state.img_url || undefined}
-        title={state.title || undefined}
-        src={state.url || undefined}
+        img_url={state.img_url}
+        title={state.title}
+        url={state.url}
       />
 
       <div className="relative">

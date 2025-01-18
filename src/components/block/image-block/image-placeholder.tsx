@@ -6,7 +6,7 @@ export default function ImagePlaceholder({
   img_url,
 }: {
   isLoading: boolean;
-  img_url?: string;
+  img_url: string | null;
 }) {
   return (
     <>

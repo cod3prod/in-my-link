@@ -14,13 +14,13 @@ export default function LinkBlock({
   style: LinkBlockStyleEnum;
   title: string;
   url: string;
-  img_url: string;
+  img_url: string | null;
 }) {
   return (
     <Link href={url} className="transform hover:scale-105 transition-all duration-300 cursor-pointer">
-      {style === LinkBlockStyleEnum.THUMBNAIL && <ThumbnailStyleLink img_url={img_url} title={title} />}
-      {style === LinkBlockStyleEnum.BACKGROUND && <BackgroundStyleLink img_url={img_url} title={title} />}
-      {style === LinkBlockStyleEnum.CARD && <CardStyleLink img_url={img_url} title={title} />}
+      {style === LinkBlockStyleEnum.THUMBNAIL && <ThumbnailStyleLink img_url={img_url!} title={title} />}
+      {style === LinkBlockStyleEnum.BACKGROUND && <BackgroundStyleLink img_url={img_url!} title={title} />}
+      {style === LinkBlockStyleEnum.CARD && <CardStyleLink img_url={img_url!} title={title} />}
       {style === LinkBlockStyleEnum.SIMPLE && <SimpleStyleLink title={title}  />}
     </Link>
   );

@@ -7,11 +7,11 @@ export default function EventBlock({
   date_start,
   date_end,
 }: {
-  title?: string;
-  sub_text_01?: string;
-  sub_text_02?: string;
-  date_start?: string;
-  date_end?: string;
+  title: string;
+  sub_text_01: string | null;
+  sub_text_02: string | null;
+  date_start: string;
+  date_end: string;
 }) {
   const dateStart = formatDateTime(date_start);
   const dateEnd = formatDateTime(date_end);

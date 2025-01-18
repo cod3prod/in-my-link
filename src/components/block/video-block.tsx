@@ -3,6 +3,7 @@
 import { FaSpinner } from "react-icons/fa";
 import { CiVideoOff } from "react-icons/ci";
 import { useState } from "react";
+import { convertToEmbedURL} from "@/utils/embed";
 
 export default function VideoBlock({ url }: { url?: string }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,7 @@ export default function VideoBlock({ url }: { url?: string }) {
           className={`aspect-video w-full rounded-lg ${
             isLoading ? "invisible" : "visible"
           }`}
-          src={url}
+          src={convertToEmbedURL(url)}
           title="video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

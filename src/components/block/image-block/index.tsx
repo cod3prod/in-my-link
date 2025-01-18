@@ -6,23 +6,23 @@ import ImageContent from "./image-content";
 
 export default function ImageBlock({
   img_url,
-  src,
+  url,
   title,
 }: {
-  img_url?: string;
-  src?: string;
-  title?: string;
+  img_url: string | null;
+  url: string | null;
+  title: string | null;
 }) {
 
   return (
     <div
       className={twMerge(
         "relative w-full rounded-lg overflow-hidden shadow-lg bg-white",
-        src ? "transform hover:scale-105 transition-all duration-150" : ""
+        url ? "transform hover:scale-105 transition-all duration-150" : ""
       )}
     >
-      {src ? (
-        <Link href={src} passHref>
+      {url ? (
+        <Link href={url} passHref>
           <div className={"cursor-pointer"}>
             <ImageContent img_url={img_url} />
           </div>

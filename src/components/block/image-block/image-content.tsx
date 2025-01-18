@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ImagePlaceholder from "./image-placeholder";
 
-export default function ImageContent({ img_url }: { img_url?: string }) {
+export default function ImageContent({ img_url }: { img_url: string | null}) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
