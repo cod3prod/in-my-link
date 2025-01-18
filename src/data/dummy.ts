@@ -194,36 +194,3 @@ const data: Block[] = [
 ];
 
 export default data;
-
-
-
-
-
-// <TextBlock
-//   title={`It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-// `}
-// />
-// <VideoBlock
-//   url={"https://www.youtube.com/embed/Rj4qtCz99ME?si=VC45C1bcMJ5NHJmG"}
-// />
-// <DividerBlock dividerStyle={DividerBlockStyleEnum.POINT} />
-// <ImageBlock
-//   img_url="https://dummyimage.com/300x200/000/fff"
-//   title="test"
-//   src="https://picsum.photos/200/300"
-// />
-// <DividerBlock
-//   className="w-full"
-//   dividerStyle={DividerBlockStyleEnum.ZIGZAG}
-// />
-// <LinkBlock
-//   style={3}
-//   title="test"
-//   url="https://picsum.photos/200/300"
-//   img_url="https://dummyimage.com/300x200/000/fff"
-// />
-// <EventBlock
-//   date_start="2024-09-12T16:00:00"
-//   date_end="2025-01-11T16:00:00"
-// />
-// <CalendarBlock schedules={schedules} />

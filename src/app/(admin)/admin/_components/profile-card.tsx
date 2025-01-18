@@ -1,16 +1,19 @@
 import Image from "next/image";
 import profileImage from "@/assets/icons/icon_profile.png";
 
-export default function ProfileCard() {
+export default function ProfileCard({profile}:{profile : Profile}) {
+  console.log("test", profile);
   return (
     <section className="relative flex h-52 w-full flex-col items-center justify-center bg-gray-100 py-8">
       <Image
-        src={profileImage}
+        src={profile?.img_url || profileImage}
         alt="profile image"
         width={64}
         height={64}
       />
-      <p className="mt-2 font-semibold text-black underline">user name</p>
+      <p className="mt-2 font-semibold text-black underline">
+        {profile?.username || `User ${profile?.id}`}
+      </p>
     </section>
   );
 }

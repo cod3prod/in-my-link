@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
 import BlockForAdmin from "./block-for-admin";
-import data from "@/data/dummy";
 import AddButton from "./add-button";
 
-export default function BlockContainer() {
-  const [blocks, setBlocks] = useState<Block[]>(data);
+export default function BlockContainer({blocks : data}: {blocks: Block[]}) {
+  const [blocks, setBlocks] = useState<Block[]>([]);
 
+  useEffect(() => {
+    setBlocks(data)
+  },[data])
+  
   const moveItem = (index: number, direction: "UP" | "DOWN") => {
     const newBlocks = [...blocks];
     const targetIndex = direction === "UP" ? index - 1 : index + 1;

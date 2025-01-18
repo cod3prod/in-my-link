@@ -57,3 +57,14 @@ type BlockFormContext = {
   state: BlockFormState;
   dispatch: React.Dispatch<BlockFormDispatch>;
 };
+
+type Profile = {
+  id: number;
+  user_id: string;
+  username: string;
+  path: string | null;
+  img_url: string | null;
+  visitor_count: number;
+  updated_at: string;
+  created_at: string;
+}
