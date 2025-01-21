@@ -61,7 +61,7 @@ type BlockFormContext = {
 type Profile = {
   id: number;
   user_id: string;
-  username: string;
+  username: string | null;
   path: string | null;
   profile_img: string | null;
   visitor_count: number;

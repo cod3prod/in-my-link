@@ -12,7 +12,6 @@ import Loader from "@/components/ui/loader";
 export default function Admin() {
   const { session } = useAuthStore();
   const [loading, setLoading] = useState(false);
-  const [profile, setProfile] = useState<Profile | null>();
   const [blocks, setBlocks] = useState<Block[]>([]);
 
   useEffect(() => {
@@ -26,16 +25,6 @@ export default function Admin() {
           .eq("user_id", session?.user.id)
           .single();
         if (error) throw error;
-        setProfile({
-          id: data.id,
-          user_id: data.user_id,
-          username: data.username,
-          path: data.path,
-          profile_img: data.profile_img,
-          visitor_count: data.visitor_count,
-          updated_at: data.updated_at,
-          created_at: data.created_at,
-        });
         setLoading(false);
         setBlocks(sortBySequence(data.blocks, "sequence", "asc"));
       } catch (err) {
@@ -51,7 +40,7 @@ export default function Admin() {
   return (
     <>
       {loading && <Loader />}
-      {profile && <ProfileCard profile={profile} />}
+      <ProfileCard />
       <BlockContainer blocks={blocks} />
     </>
   );

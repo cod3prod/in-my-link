@@ -6,16 +6,50 @@ import { supabase } from "@/libs/supabase-client";
 
 export default function Global() {
   const { setSession } = useAuthStore();
+
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (session?.user?.id) {
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("user_id", session.user.id)
+          .single();
+
+        if (error) {
+          console.error("Error fetching profile:", error);
+        } else {
+          const newSession = { ...session, profile };
+          setSession(newSession);
+        }
+      } else {
+        setSession(session);
+      }
     });
-  
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  
-    return () => subscription.unsubscribe(); 
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (_event, session) => {
+        if (session?.user?.id) {
+          const { data: profile, error } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("user_id", session.user.id)
+            .single();
+
+          if (error) {
+            console.error("Error fetching profile:", error);
+          } else {
+            const newSession = { ...session, profile };
+            setSession(newSession);
+          }
+        } else {
+          setSession(session);
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, [setSession]);
+
   return null;
 }

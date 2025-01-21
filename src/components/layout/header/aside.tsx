@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import closeIcon from "@/assets/icons/icon_close.png";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import AuthHandler from "./auth-handler";
+import { useAuthStore } from "@/zustand/auth-store";
 
 export default function Aside({
   isMenuOpen,
@@ -10,6 +14,8 @@ export default function Aside({
   isMenuOpen: boolean;
   handleClose: () => void;
 }) {
+  const { session } = useAuthStore();
+
   return (
     <aside
       className={twMerge(
@@ -34,36 +40,30 @@ export default function Aside({
           href="/"
           className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
-          Home
+          메인
         </Link>
         <Link
           onClick={handleClose}
           href="/admin"
           className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
-          Admin
+          내 블록
         </Link>
         <Link
           onClick={handleClose}
           href="/profile"
           className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
-          Profile
+          프로필
         </Link>
-        <Link
+        {session?.profile?.path && <Link
           onClick={handleClose}
-          href="/link"
+          href={`/link/${session?.profile?.path}`}
           className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
-          Link
-        </Link>
-        <Link
-          onClick={handleClose}
-          href="/auth"
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
-        >
-          Auth
-        </Link>
+          링크
+        </Link>}
+        <AuthHandler handleClose={handleClose} />
       </nav>
       {isMenuOpen && <div className="flex-1" onClick={handleClose} />}
     </aside>

@@ -5,42 +5,45 @@ import menuIcon from "@/assets/icons/icon_menu.png";
 import Image from "next/image";
 import { useState } from "react";
 import Aside from "./aside";
+import AuthHandler from "./auth-handler";
+import { useAuthStore } from "@/zustand/auth-store";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { session } = useAuthStore();
 
   return (
-    <header className="bg-primary-450 text-white p-4 fixed w-full h-16 z-50 shadow-lg">
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">IN MY LINK</h1>
-        <nav className="space-x-6 hidden md:block">
-          <Link href="/" className="hover:text-primary-200 transition-colors">
-            Home
+    <header className="bg-primary-450 text-white px-4 fixed w-full h-16 z-50 shadow-lg">
+      <div className="container h-full mx-auto flex justify-between items-center">
+        <Link href="/" className="flex items-center h-full">
+          <h1 className="text-2xl font-bold">IN MY LINK</h1>
+        </Link>
+        <nav className="h-full hidden md:flex gap-6">
+          <Link
+            href="/"
+            className="flex items-center hover:text-primary-200 transition-colors"
+          >
+            메인
           </Link>
           <Link
             href="/admin"
-            className="hover:text-primary-200 transition-colors"
+            className="flex items-center hover:text-primary-200 transition-colors"
           >
-            Admin
+            내 블록
           </Link>
           <Link
             href="/profile"
-            className="hover:text-primary-200 transition-colors"
+            className="flex items-center hover:text-primary-200 transition-colors"
           >
-            Profile
+            프로필
           </Link>
-          <Link
-            href="/link"
-            className="hover:text-primary-200 transition-colors"
+          {session?.profile?.path && <Link
+            href={`/link/${session?.profile?.path}`}
+            className="flex items-center hover:text-primary-200 transition-colors"
           >
-            Link
-          </Link>
-          <Link
-            href="/auth"
-            className="hover:text-primary-200 transition-colors"
-          >
-            Auth
-          </Link>
+            링크
+          </Link>}
+          <AuthHandler handleClose={() => setIsMenuOpen(false)} />
         </nav>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
