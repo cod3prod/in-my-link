@@ -23,7 +23,7 @@ export default function Global() {
           setSession(newSession);
         }
       } else {
-        setSession(session);
+        setSession(null);
       }
     });
 
@@ -43,7 +43,7 @@ export default function Global() {
             setSession(newSession);
           }
         } else {
-          setSession(session);
+          setSession(null);
         }
       }
     );

@@ -3,11 +3,11 @@
 import { Session } from "@supabase/supabase-js";
 import { create } from "zustand";
 
-type SessionWithProfile = Session & { profile?: Profile };
+type SessionWithProfile = Session & { profile: Profile };
 
 interface AuthState {
   session: SessionWithProfile | null;
-  setSession: (session: Session | null) => void;
+  setSession: (session: SessionWithProfile | null) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({

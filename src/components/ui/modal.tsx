@@ -33,7 +33,7 @@ function Modal({
       ref={dialog}
       onClose={onClose}
       className={twMerge(
-        "fixed inset-0 z-50 flex items-center justify-center backdrop:bg-black/50 animate__animated animate__fadeInUp",
+        "fixed inset-0 z-40 flex items-center justify-center backdrop:bg-black/50 animate__animated animate__fadeInUp",
         className
       )}
     >
@@ -44,13 +44,3 @@ function Modal({
 }
 
 export default Modal;
-
-/*
-    실제 사용
-    <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
-    <DeleteConfirmation
-    onCancel={handleStopRemovePlace}
-    onConfirm={handleRemovePlace}
-    />
-    </Modal>
-*/
