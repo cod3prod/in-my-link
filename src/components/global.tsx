@@ -3,9 +3,11 @@
 import { useEffect } from "react";
 import { useAuthStore } from "@/zustand/auth-store";
 import { supabase } from "@/libs/supabase-client";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function Global() {
   const { setSession } = useAuthStore();
+  const { setProfile } = useProfileStore();
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -15,14 +17,14 @@ export default function Global() {
           .select("*")
           .eq("user_id", session.user.id)
           .single();
-
         if (error) {
           console.error("Error fetching profile:", error);
         } else {
-          const newSession = { ...session, profile };
-          setSession(newSession);
+          setProfile(profile);
+          setSession(session);
         }
       } else {
+        setProfile(null);
         setSession(null);
       }
     });
@@ -39,17 +41,18 @@ export default function Global() {
           if (error) {
             console.error("Error fetching profile:", error);
           } else {
-            const newSession = { ...session, profile };
-            setSession(newSession);
+            setProfile(profile);
+            setSession(session);
           }
         } else {
+          setProfile(null);
           setSession(null);
         }
       }
     );
 
     return () => subscription.unsubscribe();
-  }, [setSession]);
+  }, [setSession, setProfile]);
 
   return null;
 }

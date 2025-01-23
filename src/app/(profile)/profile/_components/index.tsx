@@ -8,13 +8,13 @@ import Username from "./username";
 import InfoItem from "./info-item";
 import { EditProfileTypeEnum } from "@/enums/edit-profile-type.enum";
 import { formatDateTime } from "@/utils/date";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function Profile() {
   const { session } = useAuthStore();
+  const { profile } = useProfileStore();
 
-  if (!session) return <NotAuthenticated />;
-
-  const profile = session.profile;
+  if (!session || !profile) return <NotAuthenticated />;
 
   return (
     <div className="w-full px-4 py-6">

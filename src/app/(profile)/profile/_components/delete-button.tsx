@@ -6,13 +6,16 @@ import { useAuthStore } from "@/zustand/auth-store";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/modal";
 import Button from "@/components/ui/button";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function DeleteButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { session, setSession } = useAuthStore();
+  const { setProfile } = useProfileStore();
   const router = useRouter();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
   const handleDelete = async () => {
     if (!session) return;
     const { error } = await supabaseService.auth.admin.deleteUser(
@@ -21,6 +24,7 @@ export default function DeleteButton() {
     if (error) return console.error(error);
     setIsModalOpen(false);
     setSession(null);
+    setProfile(null);
     router.push("/");
   };
 

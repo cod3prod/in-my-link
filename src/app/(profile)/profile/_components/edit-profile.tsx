@@ -11,6 +11,7 @@ import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
 import { isValidPath } from "@/utils/path";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function EditProfile({
   isModalOpen,
@@ -25,13 +26,14 @@ export default function EditProfile({
   const [error, setError] = useState<string | null>(null);
   const [newUsername, setNewUsername] = useState("");
   const [newPath, setNewPath] = useState("");
-  const { session, setSession } = useAuthStore();
+  const { session } = useAuthStore();
+  const { profile, setProfile } = useProfileStore();
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
   const handleSubmit = async () => {
-    if (session === null) return;
+    if (!session || !profile ) return;
 
     setLoading(true);
     setError(null);
@@ -44,14 +46,13 @@ export default function EditProfile({
             username: newUsername,
             updated_at: new Date().toISOString(),
           })
-          .eq("id", session.profile.id);
-        const profile = {
-          ...session.profile,
+          .eq("id", profile.id);
+        const newProfile = {
+          ...profile,
           username: newUsername,
           updated_at: new Date().toISOString(),
         };
-        const newSession = { ...session, profile };
-        setSession(newSession);
+        setProfile(newProfile);
       } catch (error) {
         console.error(error);
       }
@@ -82,7 +83,7 @@ export default function EditProfile({
         const { error: updateError } = await supabase
           .from("profiles")
           .update({ path: newPath, updated_at: new Date() })
-          .eq("id", session.profile.id);
+          .eq("id", profile.id);
 
         if (updateError) {
           console.error("업데이트 중 오류 발생:", updateError);
@@ -90,13 +91,13 @@ export default function EditProfile({
           return;
         }
 
-        const profile = {
-          ...session.profile,
+        const newProfile = {
+          ...profile,
           path: newPath,
           updated_at: new Date().toISOString(),
         };
-        const newSession = { ...session, profile };
-        setSession(newSession);
+
+        setProfile(newProfile);
       } catch (error) {
         console.error(error);
       }

@@ -5,7 +5,7 @@ import closeIcon from "@/assets/icons/icon_close.png";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import AuthHandler from "./auth-handler";
-import { useAuthStore } from "@/zustand/auth-store";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function Aside({
   isMenuOpen,
@@ -14,7 +14,7 @@ export default function Aside({
   isMenuOpen: boolean;
   handleClose: () => void;
 }) {
-  const { session } = useAuthStore();
+  const { profile } = useProfileStore();
 
   return (
     <aside
@@ -56,9 +56,9 @@ export default function Aside({
         >
           프로필
         </Link>
-        {session?.profile?.path && <Link
+        {profile?.path && <Link
           onClick={handleClose}
-          href={`/link/${session?.profile?.path}`}
+          href={`/link/${profile?.path}`}
           className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
           링크
