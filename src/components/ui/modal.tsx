@@ -37,7 +37,7 @@ function Modal({
         className
       )}
     >
-      <div className="bg-white rounded-lg p-6 w-full max-w-lg">{children}</div>
+      <div className="bg-white rounded-lg p-4 w-full max-w-lg">{children}</div>
     </dialog>,
     document.body
   );

@@ -36,22 +36,33 @@ export default function DeleteButton() {
       >
         회원 탈퇴
       </Button>
-
-      <Modal open={isModalOpen} onClose={closeModal} className="rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">정말 탈퇴하겠습니까?</h2>
-        <div className="flex justify-between">
-          <button
-            className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
-            onClick={handleDelete}
-          >
-            예
-          </button>
-          <button
-            className="bg-gray-300 text-text-444 py-2 px-4 rounded-md hover:bg-gray-400"
-            onClick={closeModal}
-          >
-            아니요
-          </button>
+      <Modal
+        open={isModalOpen}
+        onClose={closeModal}
+        className="rounded-lg mx-auto"
+      >
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            정말 탈퇴하시겠습니까?
+          </h2>
+          <p className="text-sm text-gray-600 mb-6">
+            계정을 탈퇴하면 모든 데이터가 삭제되며 복구할 수 없습니다.<br/>
+            그래도 진행하시겠습니까?
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <Button
+              className="bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors m-0"
+              onClick={handleDelete}
+            >
+              탈퇴
+            </Button>
+            <Button
+              className="bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors m-0"
+              onClick={closeModal}
+            >
+              취소
+            </Button>
+          </div>
         </div>
       </Modal>
     </>
