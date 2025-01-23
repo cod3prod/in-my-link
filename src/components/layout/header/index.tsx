@@ -6,11 +6,11 @@ import Image from "next/image";
 import { useState } from "react";
 import Aside from "./aside";
 import AuthHandler from "./auth-handler";
-import { useAuthStore } from "@/zustand/auth-store";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { session } = useAuthStore();
+  const { profile } = useProfileStore();
 
   return (
     <header className="bg-primary-450 text-white px-4 fixed w-full h-16 z-50 shadow-lg">
@@ -37,8 +37,8 @@ export default function Header() {
           >
             프로필
           </Link>
-          {session?.profile?.path && <Link
-            href={`/link/${session?.profile?.path}`}
+          {profile?.path && <Link
+            href={`/link/${profile?.path}`}
             className="flex items-center hover:text-primary-200 transition-colors"
           >
             링크
