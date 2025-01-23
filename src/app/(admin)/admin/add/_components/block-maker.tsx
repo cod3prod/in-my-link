@@ -3,9 +3,14 @@ import { blockData } from "@/data/block-maker";
 import BlockMakerItem from "./block-maker-item";
 import { useBlockForm } from "@/hooks/use-block-form";
 import BackButton from "@/components/ui/back-button";
+import { useAuthStore } from "@/zustand/auth-store";
+import NotAuthenticated from "@/components/ui/not-authenticated";
 
 export default function BlockMaker() {
   const { state } = useBlockForm();
+  const { session } = useAuthStore();
+
+  if(!session) return <NotAuthenticated />;
 
   if (state.type !== null) {
     return null;

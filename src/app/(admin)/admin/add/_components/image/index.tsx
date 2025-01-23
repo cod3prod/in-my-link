@@ -5,11 +5,51 @@ import { BlockType } from "@/enums/block-type.enum";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import ImageBlock from "@/components/block/image-block";
+import { supabase } from "@/libs/supabase-client";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function ImageForm() {
   const { state, dispatch } = useBlockForm();
+  const { profile } = useProfileStore();
 
   if (state.type !== BlockType.IMAGE) return null;
+
+  const handleSubmit = async () => {
+    if (!state.img_url) throw new Error("You must have a image url.");
+    if (!state.title) throw new Error("You must have a title.");
+    if (!profile) throw new Error("You must have a profile.");
+    console.log("state", state);
+    console.log("profile", profile);
+
+    try {
+      const { data: maxData, error: maxError } = await supabase
+        .from("blocks")
+        .select("*")
+        .eq("profile_id", profile.id)
+        .order("sequence", { ascending: false })
+        .limit(1)
+        .single();
+
+      if (maxError) throw maxError;
+
+      const { data: insertData, error: insertError } = await supabase
+        .from("blocks")
+        .insert({
+          ...state,
+          profile_id: profile.id,
+          sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        });
+
+      if (insertError) throw insertError;
+
+      console.log("insertData", insertData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <Input
@@ -23,11 +63,7 @@ export default function ImageForm() {
         required
       />
 
-      <ImageBlock
-        img_url={state.img_url}
-        title={state.title}
-        url={state.url}
-      />
+      <ImageBlock img_url={state.img_url} title={state.title} url={state.url} />
 
       <div className="relative">
         <Input
@@ -57,7 +93,12 @@ export default function ImageForm() {
         placeholder="이미지를 통해 이동시키고 싶은 링크가 있나요?"
         id="url"
       />
-      <Button className="color" type="submit">
+      <Button
+        className="color"
+        type="button"
+        onClick={handleSubmit}
+        disabled={!state.img_url || !state.title}
+      >
         추가 완료
       </Button>
     </>

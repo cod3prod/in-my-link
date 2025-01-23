@@ -14,8 +14,13 @@ import DividerForm from "./divider";
 export default function BlockFormIndex() {
   const { state, dispatch } = useBlockForm();
   if (state.type === null) return null;
+  
   return (
-    <form method="POST" className="flex flex-col min-h-[30vh]">
+    <form
+      method="POST"
+      onSubmit={(e) => e.preventDefault()}
+      className="flex flex-col min-h-[30vh]"
+    >
       <div className="mb-6 flex justify-between items-center">
         <CloseButton
           onClick={() =>
