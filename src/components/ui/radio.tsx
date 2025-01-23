@@ -1,28 +1,40 @@
-import React, { useState } from "react";
-import { twMerge } from "tailwind-merge";
+"use client";
 
-type RadioOption = {
+import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
+import { twMerge } from "tailwind-merge";
+import { supabase } from "@/libs/supabase-client";
+
+type RadioOption<T> = {
   label: string;
-  value: string;
+  value: T;
 };
 
-type RadioProps =
+type RadioProps<T> =
   React.ComponentPropsWithoutRef<"input"> & {
-    options: RadioOption[];
+    options: RadioOption<T>[];
     name: string;
+    blockId: number;
     className?: string;
-    setValue: (value: string) => void;
+    value: T;
+    setValue: (value: T) => void;
   };
 
-export default function Radio(props: RadioProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const { options, name, className, setValue, ...rest } = props;
+export default function Radio(props: RadioProps<CalendarStyleEnum>) {
+  const { options, name, blockId, className, value, setValue, ...rest } = props;
   
-  const handleChange = (index: number) => {
-    setSelectedIndex(index);
+  const handleClick = async (index: number) => {
+    try {
+      console.log(options[index].value);
+      const { error } = await supabase
+      .from("blocks")
+      .update({ style: options[index].value })
+      .eq("id", blockId);
+      if (error) throw error;
+    } catch (error) {
+      console.error(error);
+    }
     setValue(options[index].value);
   };
-
 
   return (
     <div className={twMerge("flex", className)}>
@@ -37,8 +49,8 @@ export default function Radio(props: RadioProps) {
           type="radio"
           name={name}
           value={option.value}
-          checked={index === selectedIndex}
-          onChange={() => handleChange(index)}
+          checked={value === options[index].value}
+          onChange={() => handleClick(index)}
           {...rest}
         />
         {/* checked */}

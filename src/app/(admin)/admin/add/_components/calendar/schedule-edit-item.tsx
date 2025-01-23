@@ -1,7 +1,8 @@
 import ListViewInfo from "@/components/block/calendar-block/list-view-info";
 import StatusBadge from "@/components/block/calendar-block/status-badge";
-import Button from "@/components/ui/button";
 import { compareDates } from "@/utils/date";
+import ScheduleDeleteButton from "./schedule-delete-button";
+import ScheduleUpdateButton from "./schedule-update-button";
 
 export default function ScheduleEditItem({ schedule }: { schedule: Schedule }) {
   if (!schedule) return null;
@@ -24,18 +25,8 @@ export default function ScheduleEditItem({ schedule }: { schedule: Schedule }) {
         <ListViewInfo schedule={schedule} />
       </div>
       <div className="flex sm:flex-col justify-end sm:justify-between items-center gap-2 sm:col-span-1 sm:p-4">
-        <Button
-          className="w-16 bg-gray-200 hover:bg-gray-400 my-0"
-          type="button"
-        >
-          수정
-        </Button>
-        <Button
-          className="w-16 bg-red-100 hover:bg-red-300 text-red-500 my-0"
-          type="button"
-        >
-          삭제
-        </Button>
+        <ScheduleUpdateButton schedule={schedule} />
+        <ScheduleDeleteButton scheduleId={schedule.id!} />
       </div>
     </div>
   );

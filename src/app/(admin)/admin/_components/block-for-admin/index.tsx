@@ -31,9 +31,9 @@ export default function BlockForAdmin({
     >
       <DragTab moveItem={moveItem} index={index} controls={controls} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <BlockHeader type={type} active={active} />
+        <BlockHeader type={type} active={active} blockId={block.id} />
         <BlockContent block={block} />
-        <DeleteButton />
+        <DeleteButton blockId={block.id} />
       </div>
     </Reorder.Item>
   );

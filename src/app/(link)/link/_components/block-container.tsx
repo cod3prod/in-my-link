@@ -27,7 +27,8 @@ export default function BlockContainer() {
           return;
         }
         setLoading(false);
-        setBlocks(sortBySequence(data.blocks, "sequence", "asc"));
+        const newBlocks = data.blocks.filter((block)=> block.active === 1);
+        setBlocks(sortBySequence(newBlocks, "sequence", "asc"));
       } catch (err) {
         setLoading(false);
         console.error("Unexpected error:", err);

@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex items-center justify-center h-screen bg-white pt-20"
+      className="flex h-screen items-center justify-center bg-white"
     >
       <motion.div
         className="text-center px-4"

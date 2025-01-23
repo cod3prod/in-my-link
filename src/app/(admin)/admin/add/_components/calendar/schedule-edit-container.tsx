@@ -4,9 +4,11 @@ import { useState } from "react";
 import ScheduleEditItem from "./schedule-edit-item";
 import { compareDates } from "@/utils/date";
 import TabSelector from "./tab-selector";
+import { useScheduleStore } from "@/zustand/schedule-store";
 
-export default function ScheduleEditContainer({schedules}: { schedules: Schedule[] }) {
+export default function ScheduleEditContainer() {
   const [isOverdue, setIsOverdue] = useState(false);
+  const { schedules } = useScheduleStore();
   const now = new Date().toISOString();
 
   return (

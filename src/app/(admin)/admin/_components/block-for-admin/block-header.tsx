@@ -23,9 +23,11 @@ const blockTypeMap: Record<BlockType, { title: string; src: StaticImageData }> =
 export default function BlockHeader({
   type,
   active,
+  blockId
 }: {
   type: BlockType;
   active: 0 | 1;
+  blockId: number;
 }) {
   return (
     <div className="flex items-center justify-between h-7 px-2">
@@ -38,7 +40,7 @@ export default function BlockHeader({
         />
         <p>{blockTypeMap[type].title}</p>
       </div>
-      <ActiveTab active={active} />
+      <ActiveTab active={active} blockId={blockId} />
     </div>
   );
 }

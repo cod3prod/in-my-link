@@ -4,17 +4,18 @@ import useCalendar from "@/hooks/use-calendar";
 import DaysOfTheWeek from "./days-of-the-week";
 import Month from "./month";
 import MonthNavigator from "./month-navigator";
+import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
 
-export default function Calendar({state, type}: {state: BlockFormState, type: string}) {
+export default function Calendar({schedules, type}: {schedules: Schedule[], type: CalendarStyleEnum}) {
   const {
     currentMonth,
     setCurrentMonth,
     currentYear,
     setCurrentYear,
     events,
-  } = useCalendar(state);
+  } = useCalendar(schedules);
 
-  if (type === "list") return null;
+  if (type === CalendarStyleEnum.LIST) return null;
 
   function getDaysInMonth(year: number, month: number) {
     const date = new Date(year, month, 1);

@@ -17,7 +17,7 @@ export default function Auth() {
   }, [router, session]);
   
   return (
-    <div className="mt-28 h-fit w-full max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
+    <div className="h-fit w-full max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
       <BackButton />
       <SignUpForm />
       <LogInForm />

@@ -8,11 +8,12 @@ import NotAuthenticated from "@/components/ui/not-authenticated";
 import { useEffect, useState } from "react";
 import { sortBySequence } from "@/utils/sort";
 import Loader from "@/components/ui/loader";
+import { useBlockStore } from "@/zustand/block-store";
 
 export default function Admin() {
   const { session } = useAuthStore();
   const [loading, setLoading] = useState(false);
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const { setBlocks } = useBlockStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +34,7 @@ export default function Admin() {
       }
     };
     fetchData();
-  }, [session]);
+  }, [session, setBlocks]);
 
   if (!session) return <NotAuthenticated />;
 
@@ -41,7 +42,7 @@ export default function Admin() {
     <>
       {loading && <Loader />}
       <ProfileCard />
-      <BlockContainer blocks={blocks} />
+      <BlockContainer />
     </>
   );
 }

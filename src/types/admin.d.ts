@@ -1,9 +1,8 @@
 type Schedule = {
-  id?: number;
-  block_id?: number;
-  // user_id?: number;
+  id: number | null;
+  block_id: number | null;
   title: string;
-  url?: string;
+  url: string | null;
   date_start: string;
   date_end: string;
 };

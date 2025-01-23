@@ -114,7 +114,7 @@ export default function EditProfile({
       <Modal
         open={isModalOpen}
         onClose={handleClose}
-        className="relative rounded-lg "
+        className="rounded-lg"
       >
         <div className="flex justify-end">
           <Image

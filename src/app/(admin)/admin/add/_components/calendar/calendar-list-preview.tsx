@@ -1,12 +1,13 @@
 import CalendarBlock from "@/components/block/calendar-block";
+import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
+import { useScheduleStore } from "@/zustand/schedule-store";
 
 export default function CalendarListPreview({
-  schedules,
   type,
 }: {
-  schedules: Schedule[];
-  type: string;
+  type: CalendarStyleEnum;
 }) {
-  if (type === "calendar") return null;
+  const { schedules } = useScheduleStore();
+  if (type === CalendarStyleEnum.CALENDAR) return null;
   return <CalendarBlock schedules={schedules} />;
 }

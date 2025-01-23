@@ -12,13 +12,15 @@ import CalendarListPreview from "./calendar-list-preview";
 import { supabase } from "@/libs/supabase-client";
 import { useProfileStore } from "@/zustand/profile-store";
 import Input from "@/components/ui/input";
+import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
+import { useScheduleStore } from "@/zustand/schedule-store";
 
 export default function CalendarForm() {
   const { state, dispatch } = useBlockForm();
   const { profile } = useProfileStore();
-  const [schedules, setSchedules] = useState<Schedule[]>([]);
+  const { schedules, setSchedules } = useScheduleStore();
   const [blockId, setBlockId] = useState<number | null>();
-  const [calendarType, setCalendarType] = useState("list");
+  const [calendarType, setCalendarType] = useState<CalendarStyleEnum>(CalendarStyleEnum.LIST);
 
   useEffect(() => {
     const fetchSchedules = async () => {
@@ -32,6 +34,7 @@ export default function CalendarForm() {
 
         if (blocksError) throw blocksError;
         setBlockId(blocksData.id);
+        setCalendarType(blocksData.style);
         // console.log("block", blocksData);
 
         const { data: schedules, error: schedulesError } = await supabase
@@ -52,10 +55,39 @@ export default function CalendarForm() {
   }, [schedules, profile, state.type, state.id, setSchedules]);
 
   const handleSubmit = async () => {
+    if(blockId) {
+      const fetchBlock = async () => {
+        try {
+          const { error } = await supabase
+            .from("blocks")
+            .update({ type: calendarType })
+            .eq("id", blockId);
+            if(error) throw error;
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchBlock();
+    }
+
     if (!state.date_start || !state.date_end)
       throw new Error("You must have a date.");
     if (!state.title) throw new Error("You must have a title.");
-    if (!blockId) return;
+    if (!blockId) {
+      const { data: blockData, error: blockError } = await supabase
+        .from("blocks")
+        .insert({
+          type: calendarType,
+          profile_id: profile!.id,
+          style: state.type,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .select("id")
+        .single();
+      if (blockError) throw blockError;
+      setBlockId(blockData.id);
+    };
 
     try {
       const { data, error } = await supabase.from("schedules").insert({
@@ -117,15 +149,17 @@ export default function CalendarForm() {
       <Radio
         setValue={setCalendarType}
         name="type"
+        value={calendarType}
+        blockId={blockId!}
         options={[
-          { label: "리스트 뷰", value: "list" },
-          { label: "캘린더 뷰", value: "calendar" },
+          { label: "리스트 뷰", value: CalendarStyleEnum.LIST },
+          { label: "캘린더 뷰", value: CalendarStyleEnum.CALENDAR },
         ]}
       />
-      <CalendarListPreview schedules={schedules} type={calendarType} />
-      <Calendar state={state} type={calendarType} />
+      <CalendarListPreview type={calendarType} />
+      <Calendar schedules={schedules} type={calendarType} />
       <hr className="my-4 w-full border" />
-      <ScheduleEditContainer schedules={schedules} />
+      <ScheduleEditContainer />
     </>
   );
 }
