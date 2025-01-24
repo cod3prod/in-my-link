@@ -1,11 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { createPortal } from "react-dom";
 import "animate.css";
 import { twMerge } from "tailwind-merge";
 
-function Modal({
+export default function Modal({
   open,
   children,
   className,
@@ -16,31 +14,24 @@ function Modal({
   className?: string;
   onClose: () => void;
 }) {
-  const dialog = useRef<HTMLDialogElement | null>(null);
-
-  useEffect(() => {
-    if (open && dialog.current) {
-      dialog.current.showModal();
-    } else if (dialog.current) {
-      dialog.current.close();
-    }
-  }, [open]);
-
   if (!open) return null;
 
-  return createPortal(
-    <dialog
-      ref={dialog}
-      onClose={onClose}
-      className={twMerge(
-        "fixed inset-0 z-40 flex items-center justify-center backdrop:bg-black/50 animate__animated animate__fadeInUp",
-        className
-      )}
+  return (
+    <div
+      onClick={onClose}
+      className={
+        "fixed inset-0 z-50 p-4 flex items-center justify-center bg-black/50"
+      }
     >
-      <div className="bg-white rounded-lg p-4 w-full max-w-lg">{children}</div>
-    </dialog>,
-    document.body
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={twMerge(
+          "bg-white rounded-lg p-4 w-full max-w-lg  animate__animated animate__fadeIn",
+          className
+        )}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
-
-export default Modal;
