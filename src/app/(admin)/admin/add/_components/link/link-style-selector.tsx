@@ -12,7 +12,7 @@ export default function LinkStyleSelctor() {
         </span>
       </p>
 
-      <div className="flex gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {Array.from({ length: 4 }).map((_, i) => (
           <LinkStyleItem key={i} index={i} />
         ))}

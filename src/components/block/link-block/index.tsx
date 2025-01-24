@@ -17,7 +17,7 @@ export default function LinkBlock({
   img_url: string | null;
 }) {
   return (
-    <Link href={url} className="transform hover:scale-105 transition-all duration-300 cursor-pointer">
+    <Link href={url} className="cursor-pointer">
       {style === LinkBlockStyleEnum.THUMBNAIL && <ThumbnailStyleLink img_url={img_url!} title={title} />}
       {style === LinkBlockStyleEnum.BACKGROUND && <BackgroundStyleLink img_url={img_url!} title={title} />}
       {style === LinkBlockStyleEnum.CARD && <CardStyleLink img_url={img_url!} title={title} />}

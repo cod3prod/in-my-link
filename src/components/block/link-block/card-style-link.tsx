@@ -1,6 +1,5 @@
 "use client";
 
-import { twMerge } from "tailwind-merge";
 import ImageContentForLink from "./image-content-for-link";
 
 export default function ImageBlock({
@@ -11,12 +10,7 @@ export default function ImageBlock({
   title?: string;
 }) {
   return (
-    <div
-      className={twMerge(
-        "w-full rounded-lg overflow-hidden shadow-lg bg-white",
-        "transform hover:scale-105 transition-all duration-150"
-      )}
-    >
+    <div className={"w-full rounded-lg overflow-hidden shadow-lg bg-white"}>
       <ImageContentForLink img_url={img_url} />
 
       <p className="p-3 text-center text-gray-800">

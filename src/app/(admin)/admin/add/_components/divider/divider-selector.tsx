@@ -12,7 +12,7 @@ export default function DividerSelector() {
         </span>
       </p>
 
-      <div className="flex h-32 w-full gap-4">
+      <div className="flex w-full gap-4 flex-wrap">
         {Array.from({ length: 5 }).map((_, i) => (
           <DivideItem key={i} index={i} />
         ))}

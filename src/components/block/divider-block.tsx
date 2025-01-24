@@ -11,23 +11,30 @@ export default function DividerBlock({
   dividerStyle: DividerBlockStyleEnum;
 }) {
   return (
-    <section className={twMerge("relative flex justify-center items-center p-4", className)}>
+    <section
+      className={twMerge(
+        "relative flex justify-center items-center p-4",
+        className
+      )}
+    >
       {dividerStyle === DividerBlockStyleEnum.NONE && (
-        <div style={{ width: "100px", height: "1px" }} />
+        <div className="w-[100px] h-[1px]" />
       )}
       {dividerStyle === DividerBlockStyleEnum.DASHED && (
-        <div style={{ width: "100px", height: "1px" }}>
+        <div className="w-[100px] h-[1px]">
           <hr className="w-full border border-dashed border-black" />
         </div>
       )}
       {dividerStyle === DividerBlockStyleEnum.SOLID && (
-        <div style={{ width: "100px", height: "1px" }}>
+        <div className="w-[100px] h-[1px]">
           <hr className="w-full border border-black" />
         </div>
       )}
       {dividerStyle === DividerBlockStyleEnum.POINT && (
-        <div style={{ width: "100px" }}>
-          <div className="text-center text-2xl text-black">• • •</div>
+        <div className="w-[100px]">
+          <div className="flex justify-center items-center text-2xl text-black -translate-y-1">
+            • • •
+          </div>
         </div>
       )}
       {dividerStyle === DividerBlockStyleEnum.ZIGZAG && (

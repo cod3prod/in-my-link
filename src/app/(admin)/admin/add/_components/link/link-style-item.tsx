@@ -15,7 +15,7 @@ export default function LinkStyleItem({ index }: { index: number }) {
     const cards = [card1, card2, card3, card4];
   return (
     <div
-      className="flex h-24 w-1/4 flex-col items-center justify-center gap-2"
+      className="flex h-24 w-full flex-col items-center justify-center gap-2"
       onClick={() => {
         dispatch({
           type: "SET_FORM",
@@ -25,14 +25,14 @@ export default function LinkStyleItem({ index }: { index: number }) {
     >
       <div
         className={twMerge(
-          "relative p-2 h-20 w-full rounded-lg border border-gray-400",
+          "flex relative p-2 h-20 w-full rounded-lg border border-gray-400",
           state.style === index + 1 ? "border-primary-450" : ""
         )}
       >
         <Image
           src={cards[index]}
           alt="thumbnail"
-          className="h-14"
+          className="object-contain h-full flex-shrink-0"
         />
       </div>
       <p className="input-label text-center">{descriptions[index]}</p>
