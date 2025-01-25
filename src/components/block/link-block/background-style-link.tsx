@@ -19,7 +19,7 @@ export default function BackgroundStyleLink({
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-black/40"></div>
       {/* Title */}
-      <p className="relative z-10 text-white text-lg font-semibold">
+      <p className="relative text-white text-lg font-semibold">
         {title || "타이틀을 입력해주세요"}
       </p>
     </div>

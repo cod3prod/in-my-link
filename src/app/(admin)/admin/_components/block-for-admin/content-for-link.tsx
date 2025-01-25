@@ -13,7 +13,7 @@ export default function ContentForLink({
   return (
     <div className="flex input-label gap-3">
       {img_url && (
-        <div className="relative w-20 h-20">
+        <div className="shrink-0 relative w-20 h-20">
           <Image
             src={img_url}
             alt={`${title} image`}

@@ -8,8 +8,10 @@ import VideoBlock from "@/components/block/video-block";
 import { convertToEmbedURL } from "@/utils/embed";
 import { supabase } from "@/libs/supabase-client";
 import { useProfileStore } from "@/zustand/profile-store";
+import { useRouter } from "next/navigation";
 
 export default function VideoForm() {
+  const router = useRouter();
   const { state, dispatch } = useBlockForm();
   const { profile } = useProfileStore();
 
@@ -32,19 +34,17 @@ export default function VideoForm() {
 
       if (maxError) throw maxError;
 
-      const { data: insertData, error: insertError } = await supabase
-        .from("blocks")
-        .insert({
-          ...state,
-          profile_id: profile.id,
-          sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
+      const { error: insertError } = await supabase.from("blocks").insert({
+        ...state,
+        profile_id: profile.id,
+        sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
 
       if (insertError) throw insertError;
 
-      console.log("insertData", insertData);
+      router.push("/admin");
     } catch (error) {
       console.error(error);
     }

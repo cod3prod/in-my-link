@@ -5,65 +5,69 @@ import { BlockType } from "@/enums/block-type.enum";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import ImageBlock from "@/components/block/image-block";
-import { supabase } from "@/libs/supabase-client";
 import { useProfileStore } from "@/zustand/profile-store";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/zustand/auth-store";
+import { useReducer, useState } from "react";
+import { imageFormReducer, initialState } from "@/reducers/image-form-reducer";
+import InputImage from "@/components/ui/input-image";
+import Loader from "@/components/ui/loader";
 
 export default function ImageForm() {
-  const { state, dispatch } = useBlockForm();
+  const router = useRouter();
+  const { state: form } = useBlockForm(); // 렌더링 판별용
   const { profile } = useProfileStore();
+  const { session } = useAuthStore();
+  const [state, dispatch] = useReducer(imageFormReducer, initialState); // 이미지 파일 전송을 위한 새로운 reducer
+  const [loading, setLoading] = useState(false);
 
-  if (state.type !== BlockType.IMAGE) return null;
+  if (form.type !== BlockType.IMAGE) return null;
 
   const handleSubmit = async () => {
-    if (!state.img_url) throw new Error("You must have a image url.");
+    if (!state.image) throw new Error("You must have a image.");
     if (!state.title) throw new Error("You must have a title.");
-    if (!profile) throw new Error("You must have a profile.");
-    console.log("state", state);
-    console.log("profile", profile);
+    if (!profile || !session) return null;
+
+    const newFormData = new FormData();
+    newFormData.append("title", state.title);
+    newFormData.append("url", state.url || "");
+    newFormData.append("image", state.image);
+    newFormData.append("profile_id", profile.id.toString());
 
     try {
-      const { data: maxData, error: maxError } = await supabase
-        .from("blocks")
-        .select("*")
-        .eq("profile_id", profile.id)
-        .order("sequence", { ascending: false })
-        .limit(1)
-        .single();
+      setLoading(true);
+      const response = await fetch("/api/image", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: newFormData,
+      });
 
-      if (maxError) throw maxError;
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error(`Error: ${errorData.error || "Unknown error"}`);
+        return;
+      }
 
-      const { data: insertData, error: insertError } = await supabase
-        .from("blocks")
-        .insert({
-          ...state,
-          profile_id: profile.id,
-          sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
-
-      if (insertError) throw insertError;
-
-      console.log("insertData", insertData);
+      router.push("/admin");
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const handleFile = (file: File | null) => {
+    dispatch({ type: "SET_FORM", payload: { image: file } });
+  };
+
+  const img_url = state.image && URL.createObjectURL(state.image);
   return (
     <>
-      <Input
-        label="이미지"
-        value={state.img_url || ""}
-        onChange={(e) => {
-          dispatch({ type: "SET_FORM", payload: { img_url: e.target.value } });
-        }}
-        placeholder="이미지의 주소를 입력해주세요."
-        id="img_url"
-        required
-      />
+      <InputImage label="이미지" setValue={handleFile} required />
 
-      <ImageBlock img_url={state.img_url} title={state.title} url={state.url} />
+      <ImageBlock img_url={img_url} title={state.title} url={state.url} />
 
       <div className="relative">
         <Input
@@ -97,10 +101,11 @@ export default function ImageForm() {
         className="color"
         type="button"
         onClick={handleSubmit}
-        disabled={!state.img_url || !state.title}
+        disabled={!state.image || !state.title}
       >
         추가 완료
       </Button>
+      {loading && <Loader />}
     </>
   );
 }

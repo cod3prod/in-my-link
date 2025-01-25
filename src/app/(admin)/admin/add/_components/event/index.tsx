@@ -8,8 +8,10 @@ import EventPreview from "./event-preview";
 import DatetimeSelector from "../datetime-selector";
 import { supabase } from "@/libs/supabase-client";
 import { useProfileStore } from "@/zustand/profile-store";
+import { useRouter } from "next/navigation";
 
 export default function EventForm() {
+  const router = useRouter();
   const { state, dispatch } = useBlockForm();
   const { profile } = useProfileStore();
 
@@ -17,7 +19,8 @@ export default function EventForm() {
 
   const handleSubmit = async () => {
     if (!state.title) throw new Error("You must have a title.");
-    if (!state.date_start || !state.date_end) throw new Error("You must have a date.");
+    if (!state.date_start || !state.date_end)
+      throw new Error("You must have a date.");
     if (!profile) throw new Error("You must have a profile.");
     console.log("state", state);
     console.log("profile", profile);
@@ -30,23 +33,20 @@ export default function EventForm() {
         .order("sequence", { ascending: false })
         .limit(1)
         .single();
-      
-      if(maxError) throw maxError;
 
-      const { data: insertData, error: insertError } = await supabase
-        .from("blocks")
-        .insert({
-          ...state,
-          profile_id: profile.id,
-          sequence: maxData?.squence ? maxData.sequence + 1 : 1,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
+      if (maxError) throw maxError;
 
-      if(insertError) throw insertError;
+      const { error: insertError } = await supabase.from("blocks").insert({
+        ...state,
+        profile_id: profile.id,
+        sequence: maxData?.squence ? maxData.sequence + 1 : 1,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
 
-      console.log("insertData", insertData);
+      if (insertError) throw insertError;
 
+      router.push("/admin");
     } catch (error) {
       console.error(error);
     }

@@ -33,7 +33,11 @@ export default function BlockForAdmin({
       <div className="flex-1 flex flex-col overflow-hidden">
         <BlockHeader type={type} active={active} blockId={block.id} />
         <BlockContent block={block} />
-        <DeleteButton blockId={block.id} />
+        <DeleteButton
+          blockId={block.id}
+          type={type}
+          publicId={block.public_id || null}
+        />
       </div>
     </Reorder.Item>
   );

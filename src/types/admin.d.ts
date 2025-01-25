@@ -17,6 +17,7 @@ type Block = {
   sub_text_02: string | null;
   url: string | null;
   img_url: string | null;
+  public_id: string | null; // cloudinary image id
   date_start: string | null;
   date_end: string | null;
   created_at: string;
@@ -40,7 +41,7 @@ type BlockFormState = {
   created_at: string | null;
   updated_at: string | null;
   schedules?: Schedule[];
-  active?: 0|1;
+  active?: 0 | 1;
 };
 
 type BlockFormAction =
@@ -67,4 +68,4 @@ type Profile = {
   visitor_count: number;
   updated_at: string;
   created_at: string;
-}
+};

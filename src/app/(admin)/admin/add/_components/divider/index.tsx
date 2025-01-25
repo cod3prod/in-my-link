@@ -7,15 +7,17 @@ import DividerSelector from "./divider-selector";
 import DividerPreview from "./divider-preview";
 import { supabase } from "@/libs/supabase-client";
 import { useProfileStore } from "@/zustand/profile-store";
+import { useRouter } from "next/navigation";
 
 export default function DividerForm() {
+  const router = useRouter();
   const { state } = useBlockForm();
   const { profile } = useProfileStore();
 
   if (state.type !== BlockType.DIVIDER) return null;
 
   const handleSubmit = async () => {
-    if(!state.style) throw new Error("You must have a style.");
+    if (!state.style) throw new Error("You must have a style.");
     if (!profile) throw new Error("You must have a profile.");
     console.log("state", state);
     console.log("profile", profile);
@@ -31,19 +33,17 @@ export default function DividerForm() {
 
       if (maxError) throw maxError;
 
-      const { data: insertData, error: insertError } = await supabase
-        .from("blocks")
-        .insert({
-          ...state,
-          profile_id: profile.id,
-          sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
+      const { error: insertError } = await supabase.from("blocks").insert({
+        ...state,
+        profile_id: profile.id,
+        sequence: maxData?.sequence ? maxData.sequence + 1 : 1,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
 
       if (insertError) throw insertError;
 
-      console.log("insertData", insertData);
+      router.push("/admin");
     } catch (error) {
       console.error(error);
     }
