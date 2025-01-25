@@ -51,7 +51,7 @@ export const blockData = [
     alt: "video",
     bgColor: "#A855F7", // bg-purple-500
     title: "동영상",
-    description: "유튜브, 틱톡 등 동영상을 공유하세요",
+    description: "유튜브 동영상을 공유하세요",
   },
   {
     id: 6,

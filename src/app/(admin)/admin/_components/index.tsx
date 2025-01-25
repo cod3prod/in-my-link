@@ -1,7 +1,7 @@
 "use client";
 
 import BlockContainer from "./block-container";
-import ProfileCard from "./profile-card";
+import ProfileCard from "@/components/profile-card";
 import { useAuthStore } from "@/zustand/auth-store";
 import { supabase } from "@/libs/supabase-client";
 import NotAuthenticated from "@/components/ui/not-authenticated";

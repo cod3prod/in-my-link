@@ -6,6 +6,7 @@ import { supabase } from "@/libs/supabase-client";
 import Block from "@/components/block";
 import { sortBySequence } from "@/utils/sort";
 import Loader from "@/components/ui/loader";
+import Placeholder from "./placeholder";
 
 export default function BlockContainer() {
   const { path } = useParams();
@@ -39,9 +40,10 @@ export default function BlockContainer() {
   }, [path]);
   
   return (
-    <>
+    <div className="container mx-auto max-w-3xl p-4">
       {loading && <Loader />}
+      {blocks.length === 0 && !loading && <Placeholder />}
       {blocks.map((block) => <Block key={block.id} block={block} />)}
-    </>
+    </div>
   );
 }
