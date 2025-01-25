@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseService } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase-client";
 import { useAuthStore } from "@/zustand/auth-store";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/modal";
@@ -18,7 +18,7 @@ export default function DeleteButton() {
 
   const handleDelete = async () => {
     if (!session) return;
-    const { error } = await supabaseService.auth.admin.deleteUser(
+    const { error } = await supabase.auth.admin.deleteUser(
       session.user.id
     );
     if (error) return console.error(error);

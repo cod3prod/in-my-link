@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cloudinary } from "@/libs/cloudinary";
-import { supabaseService } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase-server";
 import { Readable } from "stream";
 
 export async function POST(request: Request) {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   const {
     data: { user },
     error,
-  } = await supabaseService.auth.getUser(accessToken);
+  } = await supabase.auth.getUser(accessToken);
   // console.log("user", user);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 401 });
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     // console.log("result", result);
     // console.log("id", user.id);
 
-    const { error } = await supabaseService
+    const { error } = await supabase
       .from("profiles")
       .update({
         profile_img: (result as CloudiNaryUploadResponse).url,

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cloudinary } from "@/libs/cloudinary";
-import { supabaseService } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase-client";
 import { Readable } from "stream";
 import { BlockType } from "@/enums/block-type.enum";
 
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   const {
     data: { user },
     error,
-  } = await supabaseService.auth.getUser(accessToken);
+  } = await supabase.auth.getUser(accessToken);
   // console.log("user", user);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 401 });
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     });
     // console.log("result", result);
     // console.log("id", user.id);
-    const { data: maxData, error: maxError } = await supabaseService
+    const { data: maxData, error: maxError } = await supabase
       .from("blocks")
       .select("*")
       .eq("profile_id", profile_id)
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
 
     if (maxError) throw maxError;
 
-    const { error } = await supabaseService
+    const { error } = await supabase
       .from("blocks")
       .insert({
         img_url: (result as CloudiNaryUploadResponse).url,
@@ -121,7 +121,7 @@ export async function DELETE(request: Request) {
   const {
     data: { user },
     error,
-  } = await supabaseService.auth.getUser(accessToken);
+  } = await supabase.auth.getUser(accessToken);
   // console.log("user", user);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 401 });
