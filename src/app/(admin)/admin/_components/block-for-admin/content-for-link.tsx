@@ -13,7 +13,7 @@ export default function ContentForLink({
   return (
     <div className="flex input-label gap-3">
       {img_url && (
-        <div className="shrink-0 relative w-20 h-20">
+        <div className="flex-none relative w-20 h-20">
           <Image
             src={img_url}
             alt={`${title} image`}
@@ -22,8 +22,8 @@ export default function ContentForLink({
           />
         </div>
       )}
-      <div className="flex flex-col gap-1">
-        <p>{title}</p>
+      <div className="min-w-0 flex flex-col gap-1">
+        <p className="truncate">{title}</p>
         <Link href={url}>
           <p className="truncate supplementary-info hover:text-blue-500">
             {url}

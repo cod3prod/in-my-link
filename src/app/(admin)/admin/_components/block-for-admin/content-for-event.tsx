@@ -16,13 +16,13 @@ export default function ContentForEvent({
 
   return (
     <div className="space-y-0.5 input-label">
-      <div className="flex items-center justify-start gap-2 text-left">
-        <p className="text-gray-400">{title}</p>
-        <span className="">{sub_text_01 || "EVENT"}</span>
+      <div className="min-w-0 flex items-center justify-start gap-2 text-left">
+        <p className="text-gray-400 truncate">{title}</p>
+        <span className="truncate">{sub_text_01 || "EVENT"}</span>
       </div>
-      <div className="flex items-center gap-2 text-left">
+      <div className="min-w-0 flex items-center gap-2 text-left">
         <p className="text-gray-400">일정</p>
-        <span className="">{`${dateStart} ~ ${dateEnd}`}</span>
+        <span className="truncate">{`${dateStart} ~ ${dateEnd}`}</span>
       </div>
     </div>
   );

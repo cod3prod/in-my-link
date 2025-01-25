@@ -12,7 +12,7 @@ export default function ContentForImage({
 }) {
   return (
     <div className="flex input-label gap-3">
-      <div className="relative w-20 h-20">
+      <div className="flex-none relative w-20 h-20">
         <Image
           src={img_url}
           alt={`${title} image`}
@@ -20,8 +20,8 @@ export default function ContentForImage({
           className="object-cover rounded-md"
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <p>{title}</p>
+      <div className="min-w-0 flex flex-col gap-1">
+        <p className="truncate">{title}</p>
         {url && (
           <Link href={url}>
             <p className="truncate supplementary-info hover:text-blue-500">
