@@ -17,8 +17,8 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "https",
-        hostname: "robohash.org",
+        protocol: "http",
+        hostname: "res.cloudinary.com",
         port: "",
         pathname: "/**",
       },

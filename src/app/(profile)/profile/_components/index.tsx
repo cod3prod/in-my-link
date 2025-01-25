@@ -19,7 +19,7 @@ export default function Profile() {
   return (
     <div className="w-full px-4 py-6">
       <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8 sm:grid-cols-5">
-        <div className="sm:col-span-2 flex flex-col items-center space-y-2">
+        <div className="sm:col-span-2 flex flex-col items-center gap-1">
           <ProfileImage src={profile?.profile_img || null} />
           <Username username={profile?.username || null} />
         </div>

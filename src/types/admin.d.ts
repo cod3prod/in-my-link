@@ -63,6 +63,7 @@ type Profile = {
   username: string | null;
   path: string | null;
   profile_img: string | null;
+  public_id: string | null; // cloudinary image id
   visitor_count: number;
   updated_at: string;
   created_at: string;

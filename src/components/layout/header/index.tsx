@@ -13,7 +13,7 @@ export default function Header() {
   const { profile } = useProfileStore();
 
   return (
-    <header className="bg-primary-450 text-white px-4 fixed w-full h-16 z-50 shadow-lg">
+    <header className="bg-primary-450 text-white px-4 fixed w-full h-16 z-10 shadow-lg">
       <div className="container h-full mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center h-full">
           <h1 className="text-2xl font-bold">IN MY LINK</h1>
