@@ -27,7 +27,7 @@ export default function DragTab({
   };
 
   return (
-    <div className="touch-none flex-shrink-0 flex flex-col bg-gray-100">
+    <div className="touch-none shrink-0 flex flex-col bg-gray-100">
       <button
         className="flex-1 hover:bg-gray-200"
         type="button"

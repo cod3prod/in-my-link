@@ -38,28 +38,28 @@ export default function Aside({
         <Link
           onClick={handleClose}
           href="/"
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
           메인
         </Link>
         <Link
           onClick={handleClose}
           href="/admin"
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
           내 블록
         </Link>
         <Link
           onClick={handleClose}
           href="/profile"
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
           프로필
         </Link>
         {profile?.path && <Link
           onClick={handleClose}
           href={`/link/${profile?.path}`}
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors"
         >
           링크
         </Link>}

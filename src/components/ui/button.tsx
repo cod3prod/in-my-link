@@ -8,7 +8,7 @@ const Button = (props: ButtonProps) => {
   
   return (
     <button
-      className={twMerge("button transition-colors duration-300", disabled ? "disable cursor-not-allowed" : "", className)}
+      className={twMerge("button mb-10 mt-10 transition-colors duration-300", disabled ? "disable cursor-not-allowed" : "", className)}
       onClick={onClick}
       disabled={disabled}
       {...rest}

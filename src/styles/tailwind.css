@@ -1,38 +1,138 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --border-width-1: 1px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-250: var(--primary-250);
+  --color-primary-300: var(--primary-300);
+  --color-primary-350: var(--primary-350);
+  --color-primary-400: var(--primary-400);
+  --color-primary-450: var(--primary-450);
+  --color-primary: var(--primary);
+
+  --color-block-connect: #df5c25;
+  --color-block-text: #6ebd72;
+  --color-block-image: #6fbadb;
+  --color-block-divider: #8bcf42;
+  --color-block-video: #8348e9;
+  --color-block-calendar: #d144ad;
+  --color-block-event: #edb72a;
+
+  --color-input-line: var(--input-color-line);
+  --color-input-bg: var(--input-color-bg);
+
+  --color-text-333: var(--foreground);
+  --color-text-444: #444444;
+  --color-text-666: #666666;
+  --color-text-999: #999999;
+  --color-text-ddd: #dddddd;
+  --color-text-ccc: #cccccc;
+}
+
+/*
+  Tailwind v4에서 기본 테두리 색상이 currentColor로 변경됨.
+  v3 스타일 유지를 위해 호환성 스타일 추가.
+  호환성 스타일 제거 시, 테두리 색상을 명시적으로 지정해야 함.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility button {
+  /* ------------------ BUTTON ------------------*/
+  @apply flex h-12 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-primary font-bold text-white;
+
+  /* 메인색상 버튼 */
+  &.color {
+    @apply bg-primary;
+  }
+  &.color:hover {
+    @apply bg-primary-400;
+  }
+  &.color.disable {
+    @apply bg-primary-100 text-primary-200;
+  }
+
+  /* 회색색상 버튼 */
+  &.gray {
+    @apply bg-neutral-200 text-neutral-700;
+  }
+  &.gray:hover {
+    @apply bg-neutral-300;
+  }
+}
+@utility color {
+  /* 메인색상 버튼 */
+  &.button {
+    @apply bg-primary;
+  }
+  &.button:hover {
+    @apply bg-primary-400;
+  }
+  &.button.disable {
+    @apply bg-primary-100 text-primary-200;
+  }
+}
+@utility disable {
+  &.button.color {
+    @apply bg-primary-100 text-primary-200;
+  }
+}
+@utility gray {
+  /* 회색색상 버튼 */
+  &.button {
+    @apply bg-neutral-200 text-neutral-700;
+  }
+  &.button:hover {
+    @apply bg-neutral-300;
+  }
+}
+@utility inserted {
+  &input {
+    @apply border-input-line bg-input-bg;
+  }
+
+  &textarea {
+    @apply border-input-line bg-input-bg;
+  }
+
+  &select {
+    @apply border-input-line bg-input-bg;
+  }
+}
+@utility page-name {
+  /* ------------------ TEXT ------------------*/
+  @apply text-2xl font-semibold text-gray-700;
+}
+@utility section-name {
+  @apply text-lg sm:text-xl font-semibold text-gray-700;
+}
+@utility title {
+  @apply text-base sm:text-lg font-bold;
+}
+@utility input-label {
+  @apply mb-2 text-sm font-medium text-gray-700;
+}
+@utility supplementary-info {
+  @apply text-xs text-gray-400;
+}
+
 @layer components {
-    /* ------------------ BUTTON ------------------*/
-    .button {
-        @apply mb-10 mt-10 flex h-12 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-primary font-bold text-white;
-    }
-
-    /* 메인색상 버튼 */
-    .button.color {
-        @apply bg-primary;
-    }
-    .button.color:hover {
-        @apply bg-primary-400;
-    }
-    .button.color.disable {
-        @apply bg-primary-100 text-primary-200;
-    }
-
-    /* 회색색상 버튼 */
-    .button.gray {
-        @apply bg-neutral-200 text-neutral-700;
-    }
-    .button.gray:hover {
-        @apply bg-neutral-300;
-    }
 
     /* ------------------ INPUT ------------------*/
     input {
         @apply p-3;
-    }
-
-    input.inserted {
-        @apply border-input-line bg-input-bg;
     }
 
     /* ------------------ TEXTAREA ------------------*/
@@ -40,35 +140,8 @@
         @apply p-3;
     }
 
-    textarea.inserted {
-        @apply border-input-line bg-input-bg;
-    }
-
     /* ------------------ SELECT ------------------*/
     select {
         @apply p-3;
-    }
-
-    select.inserted {
-        @apply border-input-line bg-input-bg;
-    }
-
-    /* ------------------ TEXT ------------------*/
-    .page-name {
-        @apply text-2xl font-semibold text-gray-700;
-    }
-    .section-name {
-        @apply text-lg sm:text-xl font-semibold text-gray-700;
-    }
-    .title {
-        @apply text-base sm:text-lg font-bold;
-    }
-
-    .input-label {
-        @apply mb-2 text-sm font-medium text-gray-700
-    }
-
-    .supplementary-info {
-        @apply text-xs text-gray-400
     }
 }

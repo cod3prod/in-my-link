@@ -20,7 +20,7 @@ export default function BlockMaker() {
     <>
       <div className="mb-6 flex items-center">
         <BackButton url="/admin" />
-        <p className="page-name flex-grow text-center">블록 선택하기</p>
+        <p className="page-name grow text-center">블록 선택하기</p>
         <div className="w-10" />
       </div>
       <p className="title">블록 타입</p>

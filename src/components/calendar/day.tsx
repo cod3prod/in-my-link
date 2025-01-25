@@ -27,7 +27,7 @@ export default function Day({ day, events, colorClasses }: DayProps) {
               return (
                 <div
                   key={index}
-                  className={`text-xs text-white w-2 h-2 sm:w-full sm:h-auto rounded-full sm:rounded sm:p-1 whitespace-nowrap ${colorClass}`}
+                  className={`text-xs text-white w-2 h-2 sm:w-full sm:h-auto rounded-full sm:rounded-sm sm:p-1 whitespace-nowrap ${colorClass}`}
                 >
                   <span className="hidden sm:inline-block truncate">{ev?.title}</span>
                 </div>

@@ -32,7 +32,7 @@ export default function LinkStyleItem({ index }: { index: number }) {
         <Image
           src={cards[index]}
           alt="thumbnail"
-          className="object-contain h-full flex-shrink-0"
+          className="object-contain h-full shrink-0"
         />
       </div>
       <p className="input-label text-center">{descriptions[index]}</p>

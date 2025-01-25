@@ -47,7 +47,7 @@ export default function UpdatePassword() {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary text-white py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full bg-primary text-white py-2 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
           >
             {loading ? "기다려주세요..." : "확인"}
           </Button>

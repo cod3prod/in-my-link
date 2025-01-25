@@ -65,7 +65,7 @@ export default function BlockMakerItem({
     >
       <div
         style={{ backgroundColor: bgColor }}
-        className="relative flex-shrink-0 flex h-14 w-14 p-2 items-center justify-center rounded-xl"
+        className="relative shrink-0 flex h-14 w-14 p-2 items-center justify-center rounded-xl"
       >
         <Image
           src={icon}

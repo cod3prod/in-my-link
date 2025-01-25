@@ -28,7 +28,7 @@ export default function AuthHandler({
     <>
       {session && profile ? (
         <button
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors duration-300 text-left md:p-0 md:hover:text-primary-200 md:hover:bg-transparent"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors duration-300 text-left md:p-0 md:hover:text-primary-200 md:hover:bg-transparent"
           onClick={handleClick}
         >
           로그아웃
@@ -37,7 +37,7 @@ export default function AuthHandler({
         <Link
           onClick={handleClose}
           href="/auth"
-          className="py-2 px-4 rounded hover:bg-gray-200 hover:text-primary-450 transition-colors duration-300 md:p-0 md:hover:text-primary-200 md:hover:bg-transparent md:flex md:items-center"
+          className="py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors duration-300 md:p-0 md:hover:text-primary-200 md:hover:bg-transparent md:flex md:items-center"
         >
           로그인
         </Link>

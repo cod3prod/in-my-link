@@ -51,13 +51,13 @@ export default function DeleteButton() {
           </p>
           <div className="flex items-center justify-center gap-4">
             <Button
-              className="bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors m-0"
+              className="bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors my-0"
               onClick={handleDelete}
             >
               탈퇴
             </Button>
             <Button
-              className="bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors m-0"
+              className="bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors my-0"
               onClick={closeModal}
             >
               취소
