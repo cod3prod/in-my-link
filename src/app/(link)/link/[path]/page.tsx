@@ -1,11 +1,9 @@
-import ProfileCard from "@/components/profile-card";
-import BlockContainer from "../_components/block-container";
+import Link from "../_components/link";
 
 export default function Page() {
   return (
     <article className="flex flex-col gap-4">
-      <ProfileCard className="bg-background" />
-      <BlockContainer />
+      <Link />
     </article>
   );
 }

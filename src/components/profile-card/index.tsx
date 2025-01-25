@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 import profileImage from "@/assets/icons/icon_profile.png";
-import { useProfileStore } from "@/zustand/profile-store";
 import { twMerge } from "tailwind-merge";
 
-export default function ProfileCard({ className }: { className?: string }) {
-  const { profile } = useProfileStore();
-
+export default function ProfileCard({
+  className,
+  profile_img,
+  username,
+}: {
+  className?: string;
+  profile_img: string | null;
+  username: string | null;
+}) {
   return (
     <section
       className={twMerge(
@@ -16,14 +21,14 @@ export default function ProfileCard({ className }: { className?: string }) {
       )}
     >
       <Image
-        src={profile?.profile_img || profileImage}
+        src={profile_img || profileImage}
         alt="Profile"
         width={150}
         height={150}
         className="w-32 h-32 rounded-full shadow-md object-cover"
       />
       <p className="mt-2 font-semibold text-black">
-        {profile?.username || "User"}
+        {username || "User"}
       </p>
     </section>
   );

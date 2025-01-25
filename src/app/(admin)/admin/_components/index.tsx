@@ -9,9 +9,11 @@ import { useEffect, useState } from "react";
 import { sortBySequence } from "@/utils/sort";
 import Loader from "@/components/ui/loader";
 import { useBlockStore } from "@/zustand/block-store";
+import { useProfileStore } from "@/zustand/profile-store";
 
 export default function Admin() {
   const { session } = useAuthStore();
+  const { profile } = useProfileStore();
   const [loading, setLoading] = useState(false);
   const { setBlocks } = useBlockStore();
 
@@ -41,7 +43,10 @@ export default function Admin() {
   return (
     <>
       {loading && <Loader />}
-      <ProfileCard />
+      <ProfileCard
+        profile_img={profile?.profile_img || null}
+        username={profile?.username || null}
+      />
       <BlockContainer />
     </>
   );
