@@ -61,7 +61,7 @@ export default function VideoForm() {
               payload: { url: e.target.value },
             });
           }}
-          placeholder="유튜브, 틱톡 등 좋아하는 동영상을 공유하세요"
+          placeholder="좋아하는 유튜브 동영상을 공유하세요"
           id="url"
           required
         />
