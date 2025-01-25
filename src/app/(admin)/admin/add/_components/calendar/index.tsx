@@ -19,96 +19,62 @@ export default function CalendarForm() {
   const { state, dispatch } = useBlockForm();
   const { profile } = useProfileStore();
   const { schedules, setSchedules } = useScheduleStore();
+  const [calendarType, setCalendarType] = useState<CalendarStyleEnum>(
+    CalendarStyleEnum.LIST
+  );
   const [blockId, setBlockId] = useState<number | null>();
-  const [calendarType, setCalendarType] = useState<CalendarStyleEnum>(CalendarStyleEnum.LIST);
 
   useEffect(() => {
-    const fetchSchedules = async () => {
+    const fetchBlock = async () => {
       try {
-        const { data: blocksData, error: blocksError } = await supabase
+        const { data, error } = await supabase
           .from("blocks")
-          .select("*")
-          .eq("profile_id", profile!.id)
+          .select("*, schedules(*)")
+          .eq("profile_id", profile?.id)
           .eq("type", BlockType.CALENDAR)
-          .single();
-
-        if (blocksError) throw blocksError;
-        setBlockId(blocksData.id);
-        setCalendarType(blocksData.style);
-        // console.log("block", blocksData);
-
-        const { data: schedules, error: schedulesError } = await supabase
-          .from("schedules")
-          .select("*")
-          .eq("block_id", blocksData.id)
-          .order("date_start", { ascending: true });
-        if (schedulesError) throw schedulesError;
-        // console.log("schedules", data);
-        setSchedules(schedules);
+          .maybeSingle();
+        if (error) throw error;
+        if (data) {
+          setBlockId(data.id);
+          setCalendarType(data.style);
+          setSchedules(data.schedules);
+        }
       } catch (error) {
         console.error(error);
       }
     };
-    if (profile) {
-      fetchSchedules();
-    }
-  }, [schedules, profile, state.type, state.id, setSchedules]);
+
+    fetchBlock();
+    console.log("blockId", blockId);
+
+  }, [blockId, setBlockId, setSchedules, profile?.id]);
 
   const handleSubmit = async () => {
-    if(blockId) {
-      const fetchBlock = async () => {
-        try {
-          const { error } = await supabase
-            .from("blocks")
-            .update({ type: calendarType })
-            .eq("id", blockId);
-            if(error) throw error;
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchBlock();
-    }
-
-    if (!state.date_start || !state.date_end)
-      throw new Error("You must have a date.");
-    if (!state.title) throw new Error("You must have a title.");
-    if (!blockId) {
-      const { data: blockData, error: blockError } = await supabase
-        .from("blocks")
-        .insert({
-          type: calendarType,
-          profile_id: profile!.id,
-          style: state.type,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        })
-        .select("id")
-        .single();
-      if (blockError) throw blockError;
-      setBlockId(blockData.id);
-    };
+    if (!profile || !blockId) return;
 
     try {
       const { data, error } = await supabase.from("schedules").insert({
         title: state.title,
-        url: state.url,
         date_start: state.date_start,
         date_end: state.date_end,
+        url: state.url,
         block_id: blockId,
-      });
+      }).select("*");
+
       if (error) throw error;
+      console.log("data return after insert", data);
+      setSchedules([...schedules, data[0]]);
       dispatch({
         type: "SET_FORM",
-        payload: { title: "", url: "", date_start: "", date_end: "" },
+        payload: { date_start: null, date_end: null, title: null, url: null },
       });
-      console.log("schedules", data);
     } catch (error) {
       console.error(error);
     }
   };
 
   if (state.type !== BlockType.CALENDAR) return null;
+
   return (
     <>
       <p className="w-full mt-4 text-xs text-gray-700">
@@ -120,9 +86,9 @@ export default function CalendarForm() {
         label="일정"
         id="title"
         value={state.title || ""}
-        onChange={(e) => {
-          dispatch({ type: "SET_FORM", payload: { title: e.target.value } });
-        }}
+        onChange={(e) =>
+          dispatch({ type: "SET_FORM", payload: { title: e.target.value } })
+        }
         placeholder="타이틀명을 입력해주세요"
         required
       />
@@ -132,9 +98,9 @@ export default function CalendarForm() {
         label="링크"
         id="link"
         value={state.url || ""}
-        onChange={(e) => {
-          dispatch({ type: "SET_FORM", payload: { url: e.target.value } });
-        }}
+        onChange={(e) =>
+          dispatch({ type: "SET_FORM", payload: { url: e.target.value } })
+        }
         placeholder="URL을 입력해주세요"
       />
       <Button
@@ -146,11 +112,12 @@ export default function CalendarForm() {
         추가 완료
       </Button>
       <hr className="my-4 w-full border" />
+
       <Radio
         setValue={setCalendarType}
         name="type"
         value={calendarType}
-        blockId={blockId!}
+        blockId={blockId || null}
         options={[
           { label: "리스트 뷰", value: CalendarStyleEnum.LIST },
           { label: "캘린더 뷰", value: CalendarStyleEnum.CALENDAR },
@@ -158,6 +125,7 @@ export default function CalendarForm() {
       />
       <CalendarListPreview type={calendarType} />
       <Calendar schedules={schedules} type={calendarType} />
+
       <hr className="my-4 w-full border" />
       <ScheduleEditContainer />
     </>

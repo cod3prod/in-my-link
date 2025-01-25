@@ -5,6 +5,7 @@ import BlockForAdmin from "./block-for-admin";
 import AddButton from "./add-button";
 import { useBlockStore } from "@/zustand/block-store";
 import { supabase } from "@/libs/supabase-client";
+import Placeholder from "./placeholder";
 
 export default function BlockContainer() {
   const {blocks, setBlocks} = useBlockStore();
@@ -44,13 +45,13 @@ export default function BlockContainer() {
       console.error("Error updating sequence in Supabase:", error);
     }
   };
-
+  
   const handleReorder = async (newOrder: Block[]) => {
     try {
       const promises = newOrder.map((block, index) => {
         return supabase
           .from("blocks")
-          .update({ sequence: index })
+          .update({ sequence: index+1 })
           .eq("id", block.id);
       });
       await Promise.all(promises);
@@ -62,6 +63,7 @@ export default function BlockContainer() {
   
   return (
   <section className="relative container mx-auto max-w-3xl mb-20 p-4" >
+    {blocks.length === 0 && <Placeholder />}
     <Reorder.Group
       as="ul"
       axis="y"

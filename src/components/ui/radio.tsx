@@ -13,7 +13,7 @@ type RadioProps<T> =
   React.ComponentPropsWithoutRef<"input"> & {
     options: RadioOption<T>[];
     name: string;
-    blockId: number;
+    blockId: number | null;
     className?: string;
     value: T;
     setValue: (value: T) => void;
@@ -23,6 +23,7 @@ export default function Radio(props: RadioProps<CalendarStyleEnum>) {
   const { options, name, blockId, className, value, setValue, ...rest } = props;
   
   const handleClick = async (index: number) => {
+    if(!blockId) return;
     try {
       console.log(options[index].value);
       const { error } = await supabase
