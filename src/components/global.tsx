@@ -26,32 +26,26 @@ export default function Global() {
       }
     };
 
-    // 초기 세션 설정
-    const initializeAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
       if (session?.user?.id) {
-        setSession(session);
-        await fetchProfile(session.user.id);
-      } else {
-        setSession(null);
-        setProfile(null);
+        fetchProfile(session.user.id);
       }
-    };
+    });
 
-    initializeAuth();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("event", _event);
+      console.log("session", session);
 
-    // 인증 상태 변경 감지
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        if (session?.user?.id) {
-          setSession(session);
+      setSession(session);
+      if (session?.user?.id) {
+        setTimeout(async () => {
           await fetchProfile(session.user.id);
-        } else {
-          setSession(null);
-          setProfile(null);
-        }
+        }, 0);
       }
-    );
+    });
 
     return () => subscription?.unsubscribe();
   }, [setSession, setProfile]);

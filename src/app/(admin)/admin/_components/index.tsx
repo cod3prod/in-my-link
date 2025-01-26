@@ -19,20 +19,26 @@ export default function Admin() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!session) return;
       try {
         setLoading(true);
+
+        if (!session || !session.user.id) {
+          return;
+        }
+
         const { data, error } = await supabase
           .from("profiles")
           .select("*, blocks(*, schedules(*))")
           .eq("user_id", session?.user.id)
           .single();
+
         if (error) throw error;
-        setLoading(false);
+
         setBlocks(sortBySequence(data.blocks, "sequence", "asc"));
       } catch (err) {
-        setLoading(false);
         console.error("Unexpected error:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
