@@ -16,33 +16,37 @@ export default function Header() {
     <header className="bg-primary-450 text-white px-4 fixed w-full h-16 z-10 shadow-lg">
       <div className="container h-full mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center h-full">
-          <h1 className="text-2xl font-bold">IN MY LINK</h1>
+          <h1 className="text-2xl font-bold hover:text-primary-200 transition-colors duration-300">
+            인 마이 링크
+          </h1>
         </Link>
         <nav className="h-full hidden md:flex gap-6">
           <Link
             href="/"
-            className="flex items-center hover:text-primary-200 transition-colors"
+            className="flex items-center hover:text-primary-200 transition-colors duration-300"
           >
             메인
           </Link>
           <Link
             href="/admin"
-            className="flex items-center hover:text-primary-200 transition-colors"
+            className="flex items-center hover:text-primary-200 transition-colors duration-300"
           >
             내 블록
           </Link>
           <Link
             href="/profile"
-            className="flex items-center hover:text-primary-200 transition-colors"
+            className="flex items-center hover:text-primary-200 transition-colors duration-300"
           >
             프로필
           </Link>
-          {profile?.path && <Link
-            href={`/link/${profile?.path}`}
-            className="flex items-center hover:text-primary-200 transition-colors"
-          >
-            링크
-          </Link>}
+          {profile?.path && (
+            <Link
+              href={`/link/${profile?.path}`}
+              className="flex items-center hover:text-primary-200 transition-colors duration-300"
+            >
+              링크
+            </Link>
+          )}
           <AuthHandler handleClose={() => setIsMenuOpen(false)} />
         </nav>
         <button
