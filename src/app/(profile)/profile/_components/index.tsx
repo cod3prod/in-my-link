@@ -9,6 +9,7 @@ import InfoItem from "./info-item";
 import { EditProfileTypeEnum } from "@/enums/edit-profile-type.enum";
 import { formatDateTime } from "@/utils/date";
 import { useProfileStore } from "@/zustand/profile-store";
+import Background from "@/components/background";
 
 export default function Profile() {
   const { session } = useAuthStore();
@@ -18,6 +19,7 @@ export default function Profile() {
 
   return (
     <section className="w-full px-8 pt-10 border-1 border-gray-200 rounded-md shadow-lg bg-background">
+      <Background />
       <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8 sm:grid-cols-5">
         <div className="sm:col-span-2 flex flex-col items-center gap-1">
           <ProfileImage src={profile?.profile_img || null} />

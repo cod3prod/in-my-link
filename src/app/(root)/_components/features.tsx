@@ -32,12 +32,11 @@ export default function Features() {
               <Image
                 src={feat1}
                 alt="블록 관리 기능"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg object-top"
+                fill
+                className="object-cover rounded-lg object-top"
               />
               <motion.div
-                className="absolute inset-0 bg-gray-900/60 flex flex-col justify-center items-center p-6"
+                className="absolute inset-0 flex flex-col justify-center items-center p-6 bg-linear-to-b from-black/10 to-black/70"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -76,12 +75,11 @@ export default function Features() {
               <Image
                 src={feat2}
                 alt="블록 추가 기능"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg object-top"
+                fill
+                className="object-cover rounded-lg object-top"
               />
               <motion.div
-                className="absolute inset-0 bg-gray-900/60 flex flex-col justify-center items-center p-6"
+                className="absolute inset-0 flex flex-col justify-center items-center p-6 bg-linear-to-b from-black/10 to-black/70"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -120,19 +118,18 @@ export default function Features() {
               <Image
                 src={feat3}
                 alt="링크 페이지 디자인 기능"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg object-top"
+                fill
+                className="object-cover rounded-lg object-top"
               />
               <motion.div
-                className="absolute inset-0 bg-gray-900/60 flex flex-col justify-center items-center p-6"
+                className="absolute inset-0 flex flex-col justify-center items-center p-6 bg-linear-to-b from-black/10 to-black/70"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
               >
                 <motion.h4
-                  className="text-xl font-semibold mb-2 text-gray-100"
+                  className="text-xl font-semibold mb-2 text-gray-200"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
