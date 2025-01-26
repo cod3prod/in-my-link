@@ -1,0 +1,19 @@
+import type { Metadata } from "next";
+
+
+// SSR 필요
+export const metadata: Metadata = {
+  title: "링크"
+};
+
+export default function LinkLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <article className="flex flex-col">
+        {children}
+     </article>
+  );
+}
