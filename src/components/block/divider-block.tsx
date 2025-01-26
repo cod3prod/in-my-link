@@ -22,12 +22,12 @@ export default function DividerBlock({
       )}
       {dividerStyle === DividerBlockStyleEnum.DASHED && (
         <div className="w-[100px] h-[1px]">
-          <hr className="w-full border border-dashed border-black" />
+          <hr className="w-full border-1 border-dashed border-black" />
         </div>
       )}
       {dividerStyle === DividerBlockStyleEnum.SOLID && (
         <div className="w-[100px] h-[1px]">
-          <hr className="w-full border border-black" />
+          <hr className="w-full border-1 border-black" />
         </div>
       )}
       {dividerStyle === DividerBlockStyleEnum.POINT && (

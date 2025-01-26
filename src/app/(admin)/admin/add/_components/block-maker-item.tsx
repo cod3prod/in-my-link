@@ -63,7 +63,7 @@ export default function BlockMakerItem({
   return (
     <>
       <div
-        className="px-1 py-2 flex items-center border-b border-gray-200 cursor-pointer hover:bg-gray-100"
+        className="px-1 py-2 flex items-center border-b-1 border-gray-200 cursor-pointer hover:bg-gray-100"
         onClick={handleClick}
       >
         <div

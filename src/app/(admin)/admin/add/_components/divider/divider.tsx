@@ -13,12 +13,12 @@ export default function Divider({
       {dividerStyle === 1 && <div className={className}> </div>}
       {dividerStyle === 2 && (
         <div className={className}>
-          <hr className="w-full border border-dashed border-black" />
+          <hr className="w-full border-1 border-dashed border-black" />
         </div>
       )}
       {dividerStyle === 3 && (
         <div className={className}>
-          <hr className="w-full border border-black" />
+          <hr className="w-full border-1 border-black" />
         </div>
       )}
       {dividerStyle === 4 && (

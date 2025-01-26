@@ -29,7 +29,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 text-center text-text-ccc border-t border-text-ccc pt-4">
+        <div className="mt-10 text-center text-text-ccc border-t-1 border-text-ccc pt-4">
           <p>&copy; {new Date().getFullYear()} IN MY LINK. All rights reserved.</p>
         </div>
       </div>

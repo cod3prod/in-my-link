@@ -26,7 +26,7 @@ export default function BlockForAdmin({
       dragControls={controls}
       key={block.id}
       className={
-        "relative flex-1 flex min-h-32 rounded-lg border border-gray-200 shadow-lg"
+        "relative flex-1 flex min-h-32 rounded-lg border-1 border-gray-200 shadow-lg"
       }
     >
       <DragTab moveItem={moveItem} index={index} controls={controls} />

@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 export default function Day({ day, events, colorClasses }: DayProps) {
   if (!day) {
-    return <div className="border h-12 sm:h-24 bg-gray-100 rounded-lg" />;
+    return <div className="border-1 h-12 sm:h-24 bg-gray-100 rounded-lg" />;
   }
 
   // 당일에 있었던 이벤트 중 가장 마지막에 만들어진 이벤트의 순서만큼 반복
@@ -16,7 +16,7 @@ export default function Day({ day, events, colorClasses }: DayProps) {
   `;
 
   return (
-    <div className="border h-12 sm:h-24 flex flex-col pl-1 sm:p-1 text-xs sm:text-sm bg-white rounded-lg">
+    <div className="border-1 h-12 sm:h-24 flex flex-col pl-1 sm:p-1 text-xs sm:text-sm bg-white rounded-lg">
       <div className="font-semibold sm:mb-1">{day.getDate()}</div>
       <div className={twMerge("flex-1 overflow-x-hidden flex flex-wrap sm:flex-nowrap sm:flex-col gap-[1px] sm:gap-1", customScrollbar)}>
         {Array(reps + 1)

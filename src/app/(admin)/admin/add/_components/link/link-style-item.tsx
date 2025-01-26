@@ -25,7 +25,7 @@ export default function LinkStyleItem({ index }: { index: number }) {
     >
       <div
         className={twMerge(
-          "flex relative p-2 h-20 w-full rounded-lg border border-gray-400",
+          "flex relative p-2 h-20 w-full rounded-lg border-1 border-gray-400",
           state.style === index + 1 ? "border-primary-450" : ""
         )}
       >

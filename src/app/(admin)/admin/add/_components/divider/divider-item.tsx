@@ -21,7 +21,7 @@ export default function DivideItem({ index }: { index: number }) {
     >
       <DividerBlock
         className={twMerge(
-            "relative flex justify-center items-center aspect-square w-full rounded-lg border border-gray-300",
+            "relative flex justify-center items-center aspect-square w-full rounded-lg border-1 border-gray-300",
             state.style === index + 1 ? "border-primary-450" : ""
         )}
         dividerStyle={index + 1}

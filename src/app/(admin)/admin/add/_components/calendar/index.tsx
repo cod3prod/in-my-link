@@ -111,7 +111,7 @@ export default function CalendarForm() {
       >
         추가 완료
       </Button>
-      <hr className="my-4 w-full border" />
+      <hr className="my-4 w-full border-1" />
 
       <Radio
         setValue={setCalendarType}
@@ -126,7 +126,7 @@ export default function CalendarForm() {
       <CalendarListPreview type={calendarType} />
       <Calendar schedules={schedules} type={calendarType} />
 
-      <hr className="my-4 w-full border" />
+      <hr className="my-4 w-full border-1" />
       <ScheduleEditContainer />
     </>
   );

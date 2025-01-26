@@ -9,12 +9,12 @@ export default function ContentForDivider({
 }) {
   return (
     <div className="flex input-label gap-3">
-      <div className="relative w-20 h-20 flex justify-center items-center rounded-md border border-gray-200">
+      <div className="relative w-20 h-20 flex justify-center items-center rounded-md border-1 border-gray-200">
         {dividerStyle === DividerBlockStyleEnum.DASHED && (
-          <hr className="w-full border border-dashed border-black" />
+          <hr className="w-full border-1 border-dashed border-black" />
         )}
         {dividerStyle === DividerBlockStyleEnum.SOLID && (
-          <hr className="w-full border border-black" />
+          <hr className="w-full border-1 border-black" />
         )}
         {dividerStyle === DividerBlockStyleEnum.POINT && (
           <div className="text-center text-2xl text-black">• • •</div>

@@ -7,7 +7,10 @@ import "@/styles/index.css";
 import { twMerge } from "tailwind-merge";
 
 export const metadata: Metadata = {
-  title: "IN MY LINK",
+  title: {
+    default:"IN MY LINK",
+    template: "%s | IN MY LINK",
+  },
   description: "BOOMCO co.",
 };
 
