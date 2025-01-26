@@ -36,8 +36,8 @@ export default function Global() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log("event", _event);
-      console.log("session", session);
+      // console.log("event", _event);
+      // console.log("session", session);
 
       setSession(session);
       if (session?.user?.id) {

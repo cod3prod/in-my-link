@@ -10,7 +10,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-     <article className="flex flex-col gap-4 relative mx-auto">
+     <article className="min-h-screen flex flex-col gap-4 relative mx-auto">
         {children}
      </article>
   );

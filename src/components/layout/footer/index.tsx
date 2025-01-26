@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="col-span-2 flex flex-col items-start">
             <h2 className="text-2xl font-bold">IN MY LINK</h2>
             <p className="text-text-ddd mt-2">
-              Connecting people with personalized links and seamless experiences.
+              소셜 링크 웹페이지 구현 프로젝트 고도화
             </p>
           </div>
           <div className="flex flex-col items-start">

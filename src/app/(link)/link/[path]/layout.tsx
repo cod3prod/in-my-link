@@ -12,7 +12,7 @@ export default function LinkLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <article className="flex flex-col">
+    <article className="min-h-screen flex flex-col">
         {children}
      </article>
   );

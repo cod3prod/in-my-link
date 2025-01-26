@@ -17,7 +17,7 @@ export default function Profile() {
   if (!session || !profile) return <NotAuthenticated />;
 
   return (
-    <section className="w-full px-8 pt-10 border-1 border-gray-200 rounded-md shadow-lg">
+    <section className="w-full px-8 pt-10 border-1 border-gray-200 rounded-md shadow-lg bg-background">
       <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8 sm:grid-cols-5">
         <div className="sm:col-span-2 flex flex-col items-center gap-1">
           <ProfileImage src={profile?.profile_img || null} />
