@@ -26,7 +26,7 @@ export default function DatetimeSelector({
 
   const updateCombinedDateTime = (newDate: string, newTime: string) => {
     if (newDate && newTime) {
-      const dateTime = new Date(`${newDate}T${newTime}`);
+      const dateTime = new Date(`${newDate}T${newTime}:00Z`).toISOString();
       return dateTime;
     } else {
       return null;
