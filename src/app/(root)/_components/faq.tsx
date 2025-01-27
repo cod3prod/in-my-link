@@ -13,7 +13,7 @@ export default function FAQ() {
         >
           <h3 className="text-4xl font-semibold">자주 묻는 질문</h3>
           <p className="text-gray-600 mt-4">
-            인 마이 링크에 대해 궁금한 점을 확인하세요
+            IN MY LINK에 대해 궁금한 점을 확인하세요
           </p>
         </motion.div>
         <div className="max-w-2xl mx-auto space-y-6">
@@ -24,7 +24,7 @@ export default function FAQ() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h4 className="text-xl font-semibold mb-2">인 마이 링크란?</h4>
+            <h4 className="text-xl font-semibold mb-2">IN MY LINK란?</h4>
             <p className="text-gray-600 text-sm">
               본인의 주요 관심사를 블록으로 추가하여 링크로 공유할 수 있는
               플랫폼입니다

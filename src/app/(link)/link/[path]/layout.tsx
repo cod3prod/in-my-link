@@ -1,3 +1,4 @@
+import Background from "@/components/background";
 import type { Metadata } from "next";
 
 
@@ -13,6 +14,7 @@ export default function LinkLayout({
 }>) {
   return (
     <article className="min-h-screen flex flex-col">
+            <Background />
         {children}
      </article>
   );

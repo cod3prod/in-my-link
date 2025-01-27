@@ -9,34 +9,34 @@ import LinkPreview from "./link-preview";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 import InputImage from "@/components/ui/input-image";
-import { initialState, linkFormReducer } from "@/reducers/link-form-reducer";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import { useAuthStore } from "@/zustand/auth-store";
 import Loader from "@/components/ui/loader";
+import { useLinkFormStore } from "@/zustand/link-form-store";
 
 export default function LinkForm() {
   const router = useRouter();
-  const { state: form } = useBlockForm(); // 렌더링 판별용
+  const { state } = useBlockForm(); // 렌더링 판별용
   const { profile } = useProfileStore();
   const { session } = useAuthStore();
-  const [state, dispatch] = useReducer(linkFormReducer, initialState); // 이미지 파일 전송을 위한 새로운 reducer
+  const { form, setForm, resetForm } = useLinkFormStore();
   const [loading, setLoading] = useState(false);
 
-  if (form.type !== BlockType.LINK) return null;
+  if (state.type !== BlockType.LINK) return null;
 
   const handleSubmit = async () => {
-    if (!state.title) throw new Error("You must have a title.");
-    if (!state.url) throw new Error("You must have a url.");
-    if (!state.image) throw new Error("You must have a image");
-    if (!state.style) throw new Error("You must have a style.");
+    if (!form.title) throw new Error("You must have a title.");
+    if (!form.url) throw new Error("You must have a url.");
+    if (!form.image) throw new Error("You must have a image");
+    if (!form.style) throw new Error("You must have a style.");
     if (!profile || !session) return null;
 
     const newFormData = new FormData();
-    newFormData.append("title", state.title);
-    newFormData.append("url", state.url);
-    newFormData.append("image", state.image);
-    newFormData.append("style", state.style);
-    newFormData.append("profile_id", profile.id.toString());
+    newFormData.append("title", form.title);
+    newFormData.append("url", form.url);
+    newFormData.append("image", form.image);
+    newFormData.append("style", form.style.toString()); // number -> string
+    newFormData.append("profile_id", profile.id.toString()); // number -> string
 
     try {
       setLoading(true);
@@ -47,13 +47,14 @@ export default function LinkForm() {
         },
         body: newFormData,
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         console.error(`Error: ${errorData.error || "Unknown error"}`);
         return;
       }
 
+      resetForm();
       router.push("/admin");
     } catch (error) {
       console.error(error);
@@ -61,10 +62,10 @@ export default function LinkForm() {
       setLoading(false);
     }
   };
-  
+
   const handleFile = (file: File | null) => {
-    dispatch({type: "SET_FORM", payload: {image: file}});
-  }
+    setForm("image", file);
+  };
 
   return (
     <>
@@ -72,12 +73,9 @@ export default function LinkForm() {
       <LinkStyleSelctor />
       <Input
         label="타이틀"
-        value={state.title || ""}
+        value={form.title || ""}
         onChange={(e) => {
-          dispatch({
-            type: "SET_FORM",
-            payload: { title: e.target.value },
-          });
+          setForm("title", e.target.value);
         }}
         placeholder="링크를 대표하는 타이틀을 입력해주세요"
         id="title"
@@ -86,27 +84,20 @@ export default function LinkForm() {
 
       <Input
         label="연결할 주소"
-        value={state.url || ""}
+        value={form.url || ""}
         onChange={(e) => {
-          dispatch({
-            type: "SET_FORM",
-            payload: { url: e.target.value },
-          });
+          setForm("url", e.target.value);
         }}
         placeholder="연결할 주소를 입력해주세요."
         id="url"
         required
       />
-      <InputImage
-        label="이미지"
-        setValue={handleFile}
-        required
-      />
+      <InputImage label="이미지" setValue={handleFile} required />
       <Button
         className="color"
         type="button"
         onClick={handleSubmit}
-        disabled={!state.url || !state.title || !state.image || !state.style}
+        disabled={!form.url || !form.title || !form.image || !form.style}
       >
         추가 완료
       </Button>

@@ -17,7 +17,7 @@ export default function Header() {
       <div className="container h-full mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center h-full">
           <h1 className="text-2xl font-bold hover:text-primary-200 transition-colors duration-300">
-            인 마이 링크
+            IN MY LINK
           </h1>
         </Link>
         <nav className="h-full hidden md:flex gap-6">

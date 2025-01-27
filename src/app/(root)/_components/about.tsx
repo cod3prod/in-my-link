@@ -11,10 +11,10 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="flex flex-col items-center w-full max-w-xl md:pl-12">
+          <div className="flex flex-col items-center w-full max-w-xl">
             <h3 className="text-4xl font-semibold mb-4">IN MY LINK 소개</h3>
             <p className="text-gray-600 mb-6 text-sm">
-              인 마이 링크는 스나이퍼 팩토리 Next.js 3기 과정에서 매칭된
+              IN MY LINK는 스나이퍼 팩토리 Next.js 3기 과정에서 매칭된
               (주)붐코 커뮤니케이션과 함께한 일경험 프로젝트입니다.
               <br />
               이 프로젝트는 소셜 링크 웹페이지의 구현 및 고도화를 목표로

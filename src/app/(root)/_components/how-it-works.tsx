@@ -13,7 +13,7 @@ export default function HowItWorks() {
         >
           <h3 className="text-4xl font-semibold">이렇게 사용하세요</h3>
           <p className="text-gray-600 mt-4">
-            인 마이 링크는 단 3단계로 시작할 수 있습니다
+            IN MY LINK는 단 3단계로 시작할 수 있습니다
           </p>
         </motion.div>
         <div className="flex flex-wrap -mx-6">

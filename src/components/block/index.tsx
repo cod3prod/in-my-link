@@ -22,7 +22,7 @@ export default function Block({
         <CalendarBlock schedules={block.schedules!} />
       )}
       {type === BlockType.DIVIDER && (
-        <DividerBlock className={className + " my-8"} dividerStyle={block.style!} />
+        <DividerBlock className={className + " my-4"} dividerStyle={block.style!} />
       )}
       {type === BlockType.EVENT && (
         <EventBlock

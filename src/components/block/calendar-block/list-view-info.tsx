@@ -1,3 +1,4 @@
+import { FaLink } from "react-icons/fa";
 import { formatDateRange } from "@/utils/date";
 import Link from "next/link";
 
@@ -10,10 +11,14 @@ export default function ListViewInfo({ schedule }: { schedule: Schedule }) {
       </p>
       {url ? (
         <Link href={url}>
-          <p className="truncate font-bold underline">{title}</p>
+          <p className="truncate font-bold hover:text-blue-300 transition-colors duration-300 cursor-pointer">
+            {title}
+
+            <FaLink className="inline ml-2" />
+          </p>
         </Link>
       ) : (
-        <p className="truncate font-bold underline">{title}</p>
+        <p className="truncate font-bold">{title}</p>
       )}
     </div>
   );

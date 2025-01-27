@@ -60,7 +60,7 @@ export default function Link() {
       <ProfileCard
         profile_img={profile?.profile_img || null}
         username={profile?.username || "존재하지 않는 링크입니다"}
-        className="bg-background"
+        className="bg-transparent"
       />
       <BlockContainer blocks={blocks} />
       {loading && <Loader />}

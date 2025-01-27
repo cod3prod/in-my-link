@@ -13,7 +13,7 @@ export default function DividerBlock({
   return (
     <section
       className={twMerge(
-        "relative flex justify-center items-center p-4",
+        "relative flex justify-center items-center",
         className
       )}
     >

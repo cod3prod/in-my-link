@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaLink } from "react-icons/fa";
 
 export default function BackgroundStyleLink({
   title,
@@ -19,8 +20,9 @@ export default function BackgroundStyleLink({
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-black/40"></div>
       {/* Title */}
-      <p className="relative text-white text-lg font-semibold">
+      <p className="relative text-white text-lg font-semibold hover:text-blue-300 transition-colors duration-300">
         {title || "타이틀을 입력해주세요"}
+        <FaLink className="inline ml-2" />
       </p>
     </div>
   );

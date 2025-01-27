@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cloudinary } from "@/libs/cloudinary";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase-server";
 import { Readable } from "stream";
 import { BlockType } from "@/enums/block-type.enum";
 
@@ -33,6 +33,7 @@ export async function POST(request: Request) {
   const url = formData.get("url") as string | null;
   const profile_id = Number(formData.get("profile_id"));
   //   console.log("profile_id", profile_id);
+  console.log("formData", formData);
 
   if (!file) {
     return NextResponse.json({ error: "No file uploaded" }, { status: 400 });

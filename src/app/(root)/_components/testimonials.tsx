@@ -14,7 +14,7 @@ export default function Testimonials() {
         >
           <h3 className="text-4xl font-semibold">사용자 후기</h3>
           <p className="text-gray-600 mt-4">
-            인 마이 링크를 경험한 분들의 이야기입니다
+            IN MY LINK를 경험한 분들의 이야기입니다
           </p>
         </motion.div>
         <div className="flex flex-wrap -mx-6">
@@ -27,7 +27,7 @@ export default function Testimonials() {
           >
             <div className="h-52 bg-primary-100 p-8 rounded-lg shadow-lg">
               <p className="text-gray-700 mb-6">
-                &quot;인 마이 링크는 정말 편리하고 효율적이에요.&quot;
+                &quot;IN MY LINK는 정말 편리하고 효율적이에요.&quot;
               </p>
               <div className="relative flex items-center">
                 <Image

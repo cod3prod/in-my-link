@@ -15,7 +15,7 @@ export default function ImageContent({ img_url }: { img_url: string | null}) {
         <div className="relative w-full h-full overflow-hidden rounded-lg">
           <Image
             className={twMerge(
-              "object-contain",
+              "object-cover",
               isLoading ? "invisible" : "visible"
             )}
             src={img_url}
