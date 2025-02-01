@@ -72,6 +72,19 @@ export default function CalendarForm() {
       console.error(error);
     }
   };
+  
+  const handleTypeChange = async (style: CalendarStyleEnum) => {
+    try {
+      const { error } = await supabase
+        .from("blocks")
+        .update({ style })
+        .eq("id", blockId);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (state.type !== BlockType.CALENDAR) return null;
 
@@ -113,11 +126,11 @@ export default function CalendarForm() {
       </Button>
       <hr className="my-4 w-full border-1" />
 
-      <Radio
+      <Radio<CalendarStyleEnum>
         setValue={setCalendarType}
         name="type"
         value={calendarType}
-        blockId={blockId || null}
+        handleChange={handleTypeChange}
         options={[
           { label: "리스트 뷰", value: CalendarStyleEnum.LIST },
           { label: "캘린더 뷰", value: CalendarStyleEnum.CALENDAR },

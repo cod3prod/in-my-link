@@ -6,6 +6,8 @@ import ImageBlock from "./image-block";
 import LinkBlock from "./link-block";
 import TextBlock from "./text-block";
 import VideoBlock from "./video-block";
+import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
+import Calendar from "../calendar";
 
 export default function Block({
   block,
@@ -18,11 +20,17 @@ export default function Block({
 
   return (
     <>
-      {type === BlockType.CALENDAR && (
-        <CalendarBlock schedules={block.schedules!} />
-      )}
+      {type === BlockType.CALENDAR &&
+        (block.style! === CalendarStyleEnum.LIST ? (
+          <CalendarBlock schedules={block.schedules!} />
+        ) : (
+          <Calendar schedules={block.schedules!} type={block.style!} />
+        ))}
       {type === BlockType.DIVIDER && (
-        <DividerBlock className={className + " my-4"} dividerStyle={block.style!} />
+        <DividerBlock
+          className={className + " my-4"}
+          dividerStyle={block.style!}
+        />
       )}
       {type === BlockType.EVENT && (
         <EventBlock
