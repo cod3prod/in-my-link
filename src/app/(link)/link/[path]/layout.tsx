@@ -1,11 +1,4 @@
 import Background from "@/components/background";
-import type { Metadata } from "next";
-
-
-// SSR 필요
-export const metadata: Metadata = {
-  title: "링크"
-};
 
 export default function LinkLayout({
   children,
@@ -14,8 +7,8 @@ export default function LinkLayout({
 }>) {
   return (
     <article className="min-h-screen flex flex-col">
-            <Background />
-        {children}
-     </article>
+      <Background />
+      {children}
+    </article>
   );
 }
