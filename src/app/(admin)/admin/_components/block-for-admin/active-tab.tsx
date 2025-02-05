@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useBlockStore } from "@/zustand/block-store";
 import { useState } from "react";
 

@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useBlockStore } from "@/zustand/block-store";
 import { BlockType } from "@/enums/block-type.enum";
 import { useProfileStore } from "@/zustand/profile-store";

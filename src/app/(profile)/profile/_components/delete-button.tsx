@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useAuthStore } from "@/zustand/auth-store";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/modal";

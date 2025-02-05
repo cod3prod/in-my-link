@@ -5,7 +5,7 @@ import { blockData } from "@/data/block-maker";
 import { useBlockForm } from "@/hooks/use-block-form";
 import { BlockType } from "@/enums/block-type.enum";
 import { useBlockStore } from "@/zustand/block-store";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { CalendarStyleEnum } from "@/enums/calendar-style.enum";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useState } from "react";

@@ -5,7 +5,7 @@ import { BlockType } from "@/enums/block-type.enum";
 import Button from "@/components/ui/button";
 import Textarea from "@/components/ui/textarea";
 import { KeyboardEvent } from "react";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 

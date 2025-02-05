@@ -1,32 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useAuthStore } from "@/zustand/auth-store";
-import { useProfileStore } from "@/zustand/profile-store";
-import { supabase } from "@/libs/supabase-client";
+import { signout } from "@/actions/auth";
 
 export default function AuthHandler({
+  profile,
   handleClose,
 }: {
+  profile: Profile | null;
   handleClose: () => void;
 }) {
-  const { session, setSession } = useAuthStore();
-  const { profile, setProfile } = useProfileStore();
+
 
   const handleClick = async () => {
-    try {
-      await supabase.auth.signOut();
-      setSession(null);
-      setProfile(null);
-    } catch (error) {
-      console.error(error);
-    }
+    await signout();
     handleClose();
   };
 
   return (
     <>
-      {session && profile ? (
+      {profile ? (
         <button
           className="cursor-pointer py-2 px-4 rounded-sm hover:bg-gray-200 hover:text-primary-450 transition-colors duration-300 text-left md:p-0 md:hover:text-primary-200 md:hover:bg-transparent"
           onClick={handleClick}

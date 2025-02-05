@@ -5,7 +5,7 @@ import { BlockType } from "@/enums/block-type.enum";
 import Button from "@/components/ui/button";
 import DividerSelector from "./divider-selector";
 import DividerPreview from "./divider-preview";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 

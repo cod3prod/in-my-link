@@ -9,7 +9,7 @@ import Button from "@/components/ui/button";
 import ScheduleEditContainer from "./schedule-edit-container";
 import DatetimeSelector from "../datetime-selector";
 import CalendarListPreview from "./calendar-list-preview";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useProfileStore } from "@/zustand/profile-store";
 import Input from "@/components/ui/input";
 import { CalendarStyleEnum } from "@/enums/calendar-style.enum";

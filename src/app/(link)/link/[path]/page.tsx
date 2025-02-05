@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-import { supabase } from "@/libs/supabase-server";
+import { supabase } from "@/libs/supabase/server";
 import ProfileCard from "@/components/profile-card";
 import BlockContainer from "../_components/block-container";
-import { Suspense } from "react";
-import Loader from "@/components/ui/loader";
+import { sortBySequence } from "@/utils/sort";
 
 async function getBlocks(path: string) {
   try {
@@ -64,14 +63,15 @@ export default async function Page({
 
   if (!result?.profile || !result?.blocks) notFound();
   const { profile, blocks } = result;
+
   return (
-    <Suspense fallback={<Loader />}>
+    <>
       <ProfileCard
         profile_img={profile?.profile_img || null}
         username={profile?.username || "존재하지 않는 링크입니다"}
         className="bg-transparent"
       />
-      <BlockContainer blocks={blocks} />
-    </Suspense>
+      <BlockContainer blocks={sortBySequence(blocks, "sequence", "asc")} />
+    </>
   );
 }

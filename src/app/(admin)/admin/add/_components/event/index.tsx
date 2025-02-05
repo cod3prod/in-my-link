@@ -6,7 +6,7 @@ import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import EventPreview from "./event-preview";
 import DatetimeSelector from "../datetime-selector";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 

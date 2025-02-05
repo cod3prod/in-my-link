@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/button";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useScheduleStore } from "@/zustand/schedule-store";
 
 export default function ScheduleDeleteButton({

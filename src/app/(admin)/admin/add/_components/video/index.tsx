@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import VideoBlock from "@/components/block/video-block";
 import { convertToEmbedURL } from "@/utils/embed";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 

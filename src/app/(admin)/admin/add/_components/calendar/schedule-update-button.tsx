@@ -4,7 +4,7 @@ import Button from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import { useScheduleStore } from "@/zustand/schedule-store";
 import { useState } from "react";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import Input from "@/components/ui/input";
 import { useBlockForm } from "@/hooks/use-block-form";
 import DatetimeSelector from "../datetime-selector";

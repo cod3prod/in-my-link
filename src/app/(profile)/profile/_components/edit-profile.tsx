@@ -5,7 +5,7 @@ import { EditProfileTypeEnum } from "@/enums/edit-profile-type.enum";
 import { Dispatch, SetStateAction, useState } from "react";
 import closeIcon from "@/assets/icons/icon_close.png";
 import Image from "next/image";
-import { supabase } from "@/libs/supabase-client";
+import { supabase } from "@/libs/supabase/client";
 import { useAuthStore } from "@/zustand/auth-store";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";

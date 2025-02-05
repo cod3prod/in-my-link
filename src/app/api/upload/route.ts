@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cloudinary } from "@/libs/cloudinary";
-import { supabase } from "@/libs/supabase-server";
+import { supabase } from "@/libs/supabase/server";
 import { Readable } from "stream";
 
 export async function POST(request: Request) {
