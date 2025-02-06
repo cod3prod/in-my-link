@@ -125,6 +125,11 @@
 
 <br>
 
+## ⚙ 소프트웨어 아키텍처
+
+![소프트웨어 아키텍처](https://res.cloudinary.com/dab5xf29a/image/upload/v1738839605/in-my-link-architecture_oidgzj.png)
+<br>
+
 ## 🖥 주요 화면 구성
 
 ### 메인 페이지 / 인증
