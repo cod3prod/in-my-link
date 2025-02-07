@@ -7,17 +7,16 @@ import Button from "@/components/ui/button";
 import ImageBlock from "@/components/block/image-block";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/zustand/auth-store";
 import { useState } from "react";
 import InputImage from "@/components/ui/input-image";
 import Loader from "@/components/ui/loader";
 import { useImageFormStore } from "@/zustand/image-form-store";
+import { supabase } from "@/libs/supabase/client";
 
 export default function ImageForm() {
   const router = useRouter();
   const { state } = useBlockForm(); // 렌더링 판별용
   const { profile } = useProfileStore();
-  const { session } = useAuthStore();
   const { form, setForm, resetForm } = useImageFormStore(); // 이미지 파일 전송을 위한 새로운 reducer
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +25,9 @@ export default function ImageForm() {
   const handleSubmit = async () => {
     if (!form.image) throw new Error("You must have a image.");
     if (!form.title) throw new Error("You must have a title.");
+    const { data: { session} } = await supabase.auth.getSession();
     if (!profile || !session) return null;
+
 
     const newFormData = new FormData();
     newFormData.append("title", form.title);

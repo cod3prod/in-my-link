@@ -10,15 +10,14 @@ import { useProfileStore } from "@/zustand/profile-store";
 import { useRouter } from "next/navigation";
 import InputImage from "@/components/ui/input-image";
 import { useState } from "react";
-import { useAuthStore } from "@/zustand/auth-store";
 import Loader from "@/components/ui/loader";
 import { useLinkFormStore } from "@/zustand/link-form-store";
+import { supabase } from "@/libs/supabase/client";
 
 export default function LinkForm() {
   const router = useRouter();
   const { state } = useBlockForm(); // 렌더링 판별용
   const { profile } = useProfileStore();
-  const { session } = useAuthStore();
   const { form, setForm, resetForm } = useLinkFormStore();
   const [loading, setLoading] = useState(false);
 
@@ -29,6 +28,9 @@ export default function LinkForm() {
     if (!form.url) throw new Error("You must have a url.");
     if (!form.image) throw new Error("You must have a image");
     if (!form.style) throw new Error("You must have a style.");
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!profile || !session) return null;
 
     const newFormData = new FormData();

@@ -5,13 +5,12 @@ import { EditProfileTypeEnum } from "@/enums/edit-profile-type.enum";
 import { Dispatch, SetStateAction, useState } from "react";
 import closeIcon from "@/assets/icons/icon_close.png";
 import Image from "next/image";
-import { supabase } from "@/libs/supabase/client";
-import { useAuthStore } from "@/zustand/auth-store";
 import Input from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
 import { isValidPath } from "@/utils/path";
 import { useProfileStore } from "@/zustand/profile-store";
+import { updatePath, updateUsername } from "@/actions/profile";
 
 export default function EditProfile({
   isModalOpen,
@@ -26,96 +25,66 @@ export default function EditProfile({
   const [error, setError] = useState<string | null>(null);
   const [newUsername, setNewUsername] = useState("");
   const [newPath, setNewPath] = useState("");
-  const { session } = useAuthStore();
   const { profile, setProfile } = useProfileStore();
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
   const handleSubmit = async () => {
-    if (!session || !profile ) return;
+    if (!profile) return;
+    console.log("debug profile", profile);
 
     setLoading(true);
     setError(null);
 
-    if (type === EditProfileTypeEnum.USERNAME) {
-      try {
-        await supabase
-          .from("profiles")
-          .update({
-            username: newUsername,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("id", profile.id);
-        const newProfile = {
+    try {
+      let newProfile;
+
+      if (type === EditProfileTypeEnum.USERNAME) {
+        const { success, error } = await updateUsername(newUsername);
+        if (!success) {
+          setError(error!);
+          return;
+        }
+
+        newProfile = {
           ...profile,
           username: newUsername,
           updated_at: new Date().toISOString(),
         };
-        setProfile(newProfile);
-      } catch (error) {
-        console.error(error);
-      }
-    } else if (type === EditProfileTypeEnum.PATH) {
-      try {
-        // 경로 유효성 검사
+      } else if (type === EditProfileTypeEnum.PATH) {
         if (isValidPath(newPath) === false) {
           setError("경로를 제대로 입력해주세요!");
           return;
         }
 
-        const { data: existingLinks, error: checkError } = await supabase
-          .from("profiles")
-          .select("id")
-          .eq("path", newPath);
-
-        if (checkError) {
-          console.error("중복 체크 중 오류 발생:", checkError);
-          setError("중복 체크 중 문제가 발생했습니다. 다시 시도해주세요.");
+        const { success, error } = await updatePath(newPath);
+        if (!success) {
+          setError(error!);
           return;
         }
 
-        if (existingLinks && existingLinks.length > 0) {
-          setError("이미 사용 중인 링크입니다.");
-          return;
-        }
-
-        const { error: updateError } = await supabase
-          .from("profiles")
-          .update({ path: newPath, updated_at: new Date() })
-          .eq("id", profile.id);
-
-        if (updateError) {
-          console.error("업데이트 중 오류 발생:", updateError);
-          setError("링크 업데이트 중 문제가 발생했습니다.");
-          return;
-        }
-
-        const newProfile = {
+        newProfile = {
           ...profile,
           path: newPath,
           updated_at: new Date().toISOString(),
         };
-
-        setProfile(newProfile);
-      } catch (error) {
-        console.error(error);
       }
-    }
 
-    setLoading(false);
-    setIsModalOpen(false);
+      setProfile(newProfile as Profile);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setIsModalOpen(false);
+    }
   };
 
   if (!isModalOpen) return null;
 
   return (
     <>
-      <Modal
-        open={isModalOpen}
-        onClose={handleClose}
-        className="rounded-lg"
-      >
+      <Modal open={isModalOpen} onClose={handleClose} className="rounded-lg">
         <div className="flex justify-end">
           <Image
             src={closeIcon}
@@ -167,7 +136,6 @@ export default function EditProfile({
             </Button>
           </div>
         )}
-        {type === EditProfileTypeEnum.IMAGE && <div>Image</div>}
       </Modal>
       {loading && <Loader />}
     </>

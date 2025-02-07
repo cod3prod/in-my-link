@@ -3,7 +3,6 @@ import { supabase } from "@/libs/supabase/client";
 import { useBlockStore } from "@/zustand/block-store";
 import { BlockType } from "@/enums/block-type.enum";
 import { useProfileStore } from "@/zustand/profile-store";
-import { useAuthStore } from "@/zustand/auth-store";
 import { useState } from "react";
 import Loader from "@/components/ui/loader";
 
@@ -17,11 +16,11 @@ export default function DeleteButton({
   publicId: string | null;
 }) {
   const { profile } = useProfileStore();
-  const { session } = useAuthStore();
   const { removeBlock } = useBlockStore();
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
+    const { data : { session } } = await supabase.auth.getSession();
     if (!profile || !session) return;
 
     try {

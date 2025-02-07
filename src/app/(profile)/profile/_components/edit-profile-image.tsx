@@ -8,8 +8,8 @@ import profileImage from "@/assets/icons/icon_profile.png";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 import { useProfileStore } from "@/zustand/profile-store";
-import { useAuthStore } from "@/zustand/auth-store";
 import Loader from "@/components/ui/loader";
+import { supabase } from "@/libs/supabase/client";
 
 export default function EditProfileImage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,9 +17,10 @@ export default function EditProfileImage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { profile, setProfile } = useProfileStore();
-  const { session } = useAuthStore();
+
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  
     const file = event.target.files?.[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
@@ -44,6 +45,7 @@ export default function EditProfileImage() {
   };
 
   const handleSubmit = async () => {
+    const { data: { session }} = await supabase.auth.getSession();
     if (!selectedFile) return;
     if (!profile) return;
     if (!session?.access_token) return;

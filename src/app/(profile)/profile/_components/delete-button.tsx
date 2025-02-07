@@ -1,31 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/libs/supabase/client";
-import { useAuthStore } from "@/zustand/auth-store";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/modal";
 import Button from "@/components/ui/button";
 import { useProfileStore } from "@/zustand/profile-store";
+import { deleteAccount } from "@/actions/auth";
 
 export default function DeleteButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { session, setSession } = useAuthStore();
   const { setProfile } = useProfileStore();
   const router = useRouter();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const handleDelete = async () => {
-    if (!session) return;
-    const { error } = await supabase.auth.admin.deleteUser(
-      session.user.id
-    );
-    if (error) return console.error(error);
-    setIsModalOpen(false);
-    setSession(null);
-    setProfile(null);
-    router.push("/");
+    try {
+      await deleteAccount();
+      setIsModalOpen(false);
+      setProfile(null);
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/libs/supabase/client";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
+import { resetPassword } from "@/actions/auth";
 
 export default function UpdatePassword() {
   const [newPassword, setNewPassword] = useState("");
@@ -15,18 +15,17 @@ export default function UpdatePassword() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
-
-    const { error } = await supabase.auth.updateUser({
-      password: newPassword,
-    });
-
-    if (error) {
-      setError(error.message);
+    setError("");
+    try {
+      await resetPassword(newPassword);
+      router.push("/");
+    } catch {
+      setError(
+        "비밀번호 변경에 실패했습니다. 6자 이상의 비밀번호를 입력해주세요."
+      );
+    } finally {
       setLoading(false);
-      return;
     }
-
-    router.push("/auth");
   };
 
   return (

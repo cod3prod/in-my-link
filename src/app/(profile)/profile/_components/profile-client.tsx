@@ -9,6 +9,7 @@ import { EditProfileTypeEnum } from "@/enums/edit-profile-type.enum";
 import DeleteButton from "./delete-button";
 import { useProfileStore } from "@/zustand/profile-store";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function ProfileClient({
   email,
@@ -50,6 +51,7 @@ export default function ProfileClient({
             placeholder="링크를 설정해주세요!"
             attribute={EditProfileTypeEnum.PATH}
           />
+          <Link href="/update-password" className="font-semibold text-gray-700 hover:underline hover:text-blue-300">비밀번호 변경</Link>
         </div>
       </div>
       <DeleteButton />
